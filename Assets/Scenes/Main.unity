@@ -133,6 +133,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 121923877}
+  - component: {fileID: 121923878}
   m_Layer: 0
   m_Name: Test
   m_TagString: Untagged
@@ -155,6 +156,31 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &121923878
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 121923876}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a206709c9ac2ec4b85a87405eed5e1f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_APIKey: edbbd1d7b50f468668e1e376376f730d
+  m_OpenWeatherURL: http://api.openweathermap.org/data/2.5/weather
+  m_City: Kuala Lumpur
+  m_UpdateInterval: 0
+  m_IconURL: http://openweathermap.org/img/wn/
+  m_IconRawImage: {fileID: 0}
+  m_CurrIconName: 
+  m_IconTexture: {fileID: 0}
+  m_MainTMPro: {fileID: 0}
+  m_DescriptionTMPro: {fileID: 0}
+  m_TempTMPro: {fileID: 0}
+  m_PressureTMPro: {fileID: 0}
+  m_HumidityTMPro: {fileID: 0}
 --- !u!1 &330585543
 GameObject:
   m_ObjectHideFlags: 0
