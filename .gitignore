@@ -70,3 +70,13 @@ crashlytics-build.properties
 # Temporary auto-generated Android Assets
 /[Aa]ssets/[Ss]treamingAssets/aa.meta
 /[Aa]ssets/[Ss]treamingAssets/aa/*
+
+# OSM large data files
+/[Aa]ssets/[Ss]treamingAssets/OSMData.meta
+/[Aa]ssets/[Ss]treamingAssets/OSMData/*
+
+# Mapbox
+/[Aa]ssets/Mapbox.meta
+/[Aa]ssets/Mapbox/*
+/[Aa]ssets/[Rr]esources/Mapbox.meta
+/[Aa]ssets/[Rr]esources/Mapbox/*
