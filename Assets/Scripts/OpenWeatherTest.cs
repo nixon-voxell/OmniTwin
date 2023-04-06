@@ -1,31 +1,28 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.Networking;
-using UnityEngine.UI;
-using TMPro;
 using Defective.JSON;
 using Voxell.Util;
 
-public class OpenWeatherAPI : MonoBehaviour
+public class OpenWeatherTest : MonoBehaviour
 {
     [SerializeField] private string m_APIKey = "edbbd1d7b50f468668e1e376376f730d";
-    [SerializeField] private string m_OpenWeatherURL = "http://api.openweathermap.org/data/2.5/weather";
+    [SerializeField] private string m_OpenWeatherURL = "https://api.openweathermap.org/data/2.5/weather";
     [SerializeField] private string m_City = "Kuala Lumpur";
-    [Tooltip("In seconds.")] [SerializeField] private float m_UpdateInterval;
+    [Tooltip("In seconds.")] [SerializeField] private float m_UpdateInterval = 60;
     private float m_IntervalAccum;
 
     [Header("Icon")]
-    [SerializeField] private string m_IconURL = "http://openweathermap.org/img/wn/";
-    [SerializeField] private RawImage m_IconRawImage;
+    [SerializeField] private string m_IconURL = "https://openweathermap.org/img/wn/";
     [SerializeField, InspectOnly] private string m_CurrIconName = "";
     [SerializeField, InspectOnly] private Texture m_IconTexture;
 
     [Header("TMPro")]
-    [SerializeField] private TextMeshProUGUI m_MainTMPro;
-    [SerializeField] private TextMeshProUGUI m_DescriptionTMPro;
-    [SerializeField] private TextMeshProUGUI m_TempTMPro;
-    [SerializeField] private TextMeshProUGUI m_PressureTMPro;
-    [SerializeField] private TextMeshProUGUI m_HumidityTMPro;
+    [SerializeField, InspectOnly] private string m_Main;
+    [SerializeField, InspectOnly] private string m_Description;
+    [SerializeField, InspectOnly] private string m_Temp;
+    [SerializeField, InspectOnly] private string m_Pressure;
+    [SerializeField, InspectOnly] private string m_Humidity;
 
     private void Start()
     {
@@ -68,11 +65,11 @@ public class OpenWeatherAPI : MonoBehaviour
             float pressure = mainObj["pressure"].floatValue;
             float humidity = mainObj["humidity"].floatValue;
 
-            this.m_MainTMPro.text = main;
-            this.m_DescriptionTMPro.text = description;
-            this.m_TempTMPro.text = temp.ToString() + " °C";
-            this.m_PressureTMPro.text = pressure.ToString() + " Pa";
-            this.m_HumidityTMPro.text = humidity.ToString() + " g.m<sup>-3</sup>";
+            this.m_Main = main;
+            this.m_Description = description;
+            this.m_Temp = temp.ToString() + " °C";
+            this.m_Pressure = pressure.ToString() + " Pa";
+            this.m_Humidity = humidity.ToString() + " g.m<sup>-3</sup>";
 
             if (this.m_CurrIconName != icon || this.m_IconTexture == null)
             {
@@ -101,7 +98,6 @@ public class OpenWeatherAPI : MonoBehaviour
 
             this.m_CurrIconName = icon;
             this.m_IconTexture = DownloadHandlerTexture.GetContent(request);
-            this.m_IconRawImage.texture = this.m_IconTexture;
             request.Dispose();
         }
     }
