@@ -5,18 +5,41 @@ using UnityEngine.Networking;
 using Unity.Mathematics;
 using TMPro;
 
-public class OpenStreetMap : MonoBehaviour
+public class OpenStreetMapTest : MonoBehaviour
 {
     [SerializeField] private string m_OpenStreetMapURL = "https://www.openstreetmap.org/api";
-    [SerializeField] private MinMaxAABB m_OSMAABB;
+    [SerializeField] private MinMaxAABB m_OsmAabb;
 
-    [SerializeField] private float m_OSMVersion;
+    [SerializeField] private float m_OsmVersion;
     [SerializeField] private TextMeshProUGUI m_BoundsDataTMPro;
 
-    private void Start()
+    private XmlDocument m_OsmDoc;
+    private XmlNode m_OsmXmlAabb;
+    private XmlNodeList m_OsmXmlNodes;
+    private XmlNodeList m_OsmXmlWays;
+
+    private IEnumerator Start()
     {
         this.StartCoroutine(this.RequestVersion());
-        this.StartCoroutine(this.RequestBounds(this.m_OSMAABB, 0.6f));
+        this.StartCoroutine(this.RequestBounds(this.m_OsmAabb, 0.6f));
+
+        while (this.m_OsmDoc == null)
+        {
+            yield return new WaitForEndOfFrame();
+        }
+
+        // this.m_OsmBounds = this.m_OsmDoc.GetElementsByTagName()
+        this.m_OsmXmlAabb = this.m_OsmDoc.SelectSingleNode("/osm/bounds");
+        this.m_OsmXmlNodes = this.m_OsmDoc.SelectNodes("/osm/node");
+        this.m_OsmXmlWays = this.m_OsmDoc.SelectNodes("/osm/way");
+
+        Debug.Log(this.m_OsmXmlNodes.Count);
+        Debug.Log(this.m_OsmXmlWays.Count);
+    }
+
+    private void Update()
+    {
+        if (this.m_OsmDoc == null) return;
     }
 
     private IEnumerator RequestVersion()
@@ -55,7 +78,13 @@ public class OpenStreetMap : MonoBehaviour
             request.Dispose();
         } else
         {
-            this.m_BoundsDataTMPro.text = request.downloadHandler.text[^100..^1];
+            string rawXmlText = request.downloadHandler.text;
+
+            this.m_OsmDoc = new XmlDocument();
+            this.m_OsmDoc.LoadXml(rawXmlText);
+
+            Debug.Log("Done");
+
             request.Dispose();
         }
     }

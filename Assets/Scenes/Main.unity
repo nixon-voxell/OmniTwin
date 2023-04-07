@@ -135,6 +135,7 @@ GameObject:
   - component: {fileID: 121923877}
   - component: {fileID: 121923878}
   - component: {fileID: 121923879}
+  - component: {fileID: 121923880}
   m_Layer: 0
   m_Name: Test
   m_TagString: Untagged
@@ -194,17 +195,32 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_OpenStreetMapURL: https://www.openstreetmap.org/api
-  m_OSMAABB:
+  m_OsmAabb:
     Min:
-      x: 101.7
-      y: 3.15
+      x: 0
+      y: 0
       z: 0
     Max:
-      x: 101.72
-      y: 3.16
+      x: 0
+      y: 0
       z: 0
-  m_OSMVersion: 0
+  m_OsmVersion: 0
   m_BoundsDataTMPro: {fileID: 479357727}
+--- !u!114 &121923880
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 121923876}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e424c0739a06134fa215c88ded970f1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  url: http://tile.openstreetmap.org/{0}/{1}/{2}.png
+  zoom: 12
+  latLon: {x: 3.157764, y: 101.7119}
 --- !u!1 &204449653
 GameObject:
   m_ObjectHideFlags: 0
