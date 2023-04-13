@@ -8,38 +8,37 @@ using TMPro;
 public class OpenStreetMapTest : MonoBehaviour
 {
     [SerializeField] private string m_OpenStreetMapURL = "https://www.openstreetmap.org/api";
-    [SerializeField] private MinMaxAABB m_OsmAabb;
+    // [SerializeField] private MinMaxAABB m_OsmAabb;
 
     [SerializeField] private float m_OsmVersion;
     [SerializeField] private TextMeshProUGUI m_BoundsDataTMPro;
 
-    private XmlDocument m_OsmDoc;
-    private XmlNode m_OsmXmlAabb;
-    private XmlNodeList m_OsmXmlNodes;
-    private XmlNodeList m_OsmXmlWays;
+    private XmlDocument m_Doc;
+    private XmlNode m_XmlAabb;
+    private XmlNodeList m_XmlNodes;
+    private XmlNodeList m_XmlWays;
 
     private IEnumerator Start()
     {
         this.StartCoroutine(this.RequestVersion());
-        this.StartCoroutine(this.RequestBounds(this.m_OsmAabb, 0.6f));
+        // this.StartCoroutine(this.RequestBounds(this.m_OsmAabb, 0.6f));
 
-        while (this.m_OsmDoc == null)
+        while (this.m_Doc == null)
         {
             yield return new WaitForEndOfFrame();
         }
 
-        // this.m_OsmBounds = this.m_OsmDoc.GetElementsByTagName()
-        this.m_OsmXmlAabb = this.m_OsmDoc.SelectSingleNode("/osm/bounds");
-        this.m_OsmXmlNodes = this.m_OsmDoc.SelectNodes("/osm/node");
-        this.m_OsmXmlWays = this.m_OsmDoc.SelectNodes("/osm/way");
+        this.m_XmlAabb = this.m_Doc.SelectSingleNode("/osm/bounds");
+        this.m_XmlNodes = this.m_Doc.SelectNodes("/osm/node");
+        this.m_XmlWays = this.m_Doc.SelectNodes("/osm/way");
 
-        Debug.Log(this.m_OsmXmlNodes.Count);
-        Debug.Log(this.m_OsmXmlWays.Count);
+        Debug.Log(this.m_XmlNodes.Count);
+        Debug.Log(this.m_XmlWays.Count);
     }
 
     private void Update()
     {
-        if (this.m_OsmDoc == null) return;
+        if (this.m_Doc == null) return;
     }
 
     private IEnumerator RequestVersion()
@@ -61,31 +60,31 @@ public class OpenStreetMapTest : MonoBehaviour
         }
     }
 
-    private IEnumerator RequestBounds(MinMaxAABB OSMBounds, float version)
-    {
-        // https://www.openstreetmap.org/api/0.6/map?bbox=0.5,0.5,0.6,0.6
-        float2 minBound = OSMBounds.Min.xy;
-        float2 maxBound = OSMBounds.Max.xy;
+    // private IEnumerator RequestBounds(MinMaxAABB OSMBounds, float version)
+    // {
+    //     // https://www.openstreetmap.org/api/0.6/map?bbox=0.5,0.5,0.6,0.6
+    //     float2 minBound = OSMBounds.Min.xy;
+    //     float2 maxBound = OSMBounds.Max.xy;
 
-        string requestURL = $"{this.m_OpenStreetMapURL}/{version}/map?bbox={minBound.x},{minBound.y},{maxBound.x},{maxBound.y}";
+    //     string requestURL = $"{this.m_OpenStreetMapURL}/{version}/map?bbox={minBound.x},{minBound.y},{maxBound.x},{maxBound.y}";
 
-        UnityWebRequest request = UnityWebRequest.Get(requestURL);
-        yield return request.SendWebRequest();
+    //     UnityWebRequest request = UnityWebRequest.Get(requestURL);
+    //     yield return request.SendWebRequest();
 
-        if (request.result != UnityWebRequest.Result.Success)
-        {
-            Debug.Log(request.error);
-            request.Dispose();
-        } else
-        {
-            string rawXmlText = request.downloadHandler.text;
+    //     if (request.result != UnityWebRequest.Result.Success)
+    //     {
+    //         Debug.Log(request.error);
+    //         request.Dispose();
+    //     } else
+    //     {
+    //         string rawXmlText = request.downloadHandler.text;
 
-            this.m_OsmDoc = new XmlDocument();
-            this.m_OsmDoc.LoadXml(rawXmlText);
+    //         this.m_Doc = new XmlDocument();
+    //         this.m_Doc.LoadXml(rawXmlText);
 
-            Debug.Log("Done");
+    //         Debug.Log("OSM Street Map done");
 
-            request.Dispose();
-        }
-    }
+    //         request.Dispose();
+    //     }
+    // }
 }

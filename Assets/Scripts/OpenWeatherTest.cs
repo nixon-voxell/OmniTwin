@@ -6,7 +6,7 @@ using Voxell.Util;
 
 public class OpenWeatherTest : MonoBehaviour
 {
-    [SerializeField] private string m_APIKey = "edbbd1d7b50f468668e1e376376f730d";
+    [SerializeField] private string m_APIKey;
     [SerializeField] private string m_OpenWeatherURL = "https://api.openweathermap.org/data/2.5/weather";
     [SerializeField] private string m_City = "Kuala Lumpur";
     [Tooltip("In seconds.")] [SerializeField] private float m_UpdateInterval = 60;
