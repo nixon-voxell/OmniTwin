@@ -462,9 +462,9 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1099965394}
-  m_LocalRotation: {x: 0.70771974, y: -0.000091341586, z: -0.00008193443, w: 0.70649326}
-  m_LocalPosition: {x: 1563.4307, y: 1076.9222, z: 10993.334}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: 0.707284, y: -0.00000016537786, z: -0.00000012449243, w: 0.7069295}
+  m_LocalPosition: {x: 2.5876887, y: 1883.8528, z: -1.6732564}
+  m_LocalScale: {x: 1, y: 0.9999998, z: 0.9999998}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1856336270}
@@ -498,24 +498,24 @@ MonoBehaviour:
   _detectTransformChanges: 1
   _localToGlobeFixedMatrix:
     c0:
-      x: -0.979173481464386
-      y: -0.20302529633045197
-      z: 0.000000014901161193847656
+      x: -0.9791735841704486
+      y: -0.20302485577582885
+      z: 0.000000035077745796125254
       w: 0
     c1:
-      x: 0.01116982102394104
-      y: -0.0538710355758667
-      z: 0.9984854459762573
+      x: 0.011270701679899383
+      y: -0.0543575725948886
+      z: 0.9984577734207708
       w: 0
     c2:
-      x: 0.20271779596805573
-      y: -0.9776904582977295
-      z: -0.05501681566238403
+      x: 0.20271174354024352
+      y: -0.9776634770386174
+      z: -0.05551373176759635
       w: 0
     c3:
-      x: -1293397.999977841
-      y: 6237946.999968903
-      z: 348674.0002356686
+      x: -1293395.4309570857
+      y: 6237948.921486175
+      z: 348649.31937451713
       w: 1
   _localToGlobeFixedMatrixIsValid: 1
 --- !u!114 &1099965400
@@ -629,6 +629,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1198375942}
+  - component: {fileID: 1198375943}
   m_Layer: 0
   m_Name: HybridDynCamera
   m_TagString: Untagged
@@ -651,6 +652,23 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1198375943
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1198375941}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 05252028a3339fb4c8b754d6f63c8629, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_CesiumGlobeAnchor: {fileID: 1099965398}
+  m_CameraSpeed:
+    x: 0.00002
+    y: 0.00002
+    z: 0.01
 --- !u!1 &1586528408
 GameObject:
   m_ObjectHideFlags: 0
@@ -765,12 +783,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _originAuthority: 0
-  _latitude: 3.054438809483609
-  _longitude: 101.69986503468529
-  _height: 1000
-  _ecefX: -1291767.765798852
-  _ecefY: 6237784.598355253
-  _ecefZ: 337638.900268541
+  _latitude: 3.153615126777492
+  _longitude: 101.71387672699028
+  _height: 202.79490730308552
+  _ecefX: -1293010.989490486
+  _ecefY: 6236107.5311081065
+  _ecefZ: 348547.35334141867
 --- !u!4 &1856336270
 Transform:
   m_ObjectHideFlags: 0

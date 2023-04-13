@@ -1,21 +1,18 @@
 using UnityEngine;
+using Unity.Mathematics;
 using CesiumForUnity;
 
-public class HybridDynCameraMono : MonoBehaviour
+namespace OmniTwin
 {
-    public static HybridDynCameraMono Instance;
-    private CesiumGlobeAnchor m_CesiumGlobeAnchor;
-
-    public CesiumGlobeAnchor CesiumGlobeAnchor => this.m_CesiumGlobeAnchor;
-
-    private void Awake()
+    public class HybridDynCameraMono : MonoBehaviour
     {
-        if (Instance == null)
+        [SerializeField] private CesiumGlobeAnchor m_CesiumGlobeAnchor;
+        [SerializeField] private float3 m_CameraSpeed;
+
+        private void Awake()
         {
-            Instance = this;
-        } else
-        {
-            Object.Destroy(this);
+            OmniWorld.CesiumGlobeAnchor = this.m_CesiumGlobeAnchor;
+            OmniWorld.CameraSpeed = this.m_CameraSpeed;
         }
     }
 }
