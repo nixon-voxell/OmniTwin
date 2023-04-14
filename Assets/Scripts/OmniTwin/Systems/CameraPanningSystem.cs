@@ -9,7 +9,7 @@ namespace OmniTwin
     {
         private bool m_Dragging;
         private float3 m_DragStartMouse;
-        private float3 m_LongitudeLatitudeHeight;
+        private double3 m_DragStartGeoCoord;
 
         public void OnCreate(ref SystemState state)
         {
@@ -20,12 +20,14 @@ namespace OmniTwin
         {
             // get globe anchor from singleton
             CesiumGlobeAnchor globeAnchor = OmniWorld.CesiumGlobeAnchor;
+            // 200.0f is the default height (magic number per se)
+            float height = (float)globeAnchor.longitudeLatitudeHeight.z / 200.0f;
 
             if (Input.GetMouseButtonDown(0))
             {
                 this.m_Dragging = true;
                 this.m_DragStartMouse = Input.mousePosition;
-                this.m_LongitudeLatitudeHeight = (float3)globeAnchor.longitudeLatitudeHeight;
+                this.m_DragStartGeoCoord = globeAnchor.longitudeLatitudeHeight;
             }
 
             if (Input.GetMouseButtonUp(0))
@@ -36,8 +38,12 @@ namespace OmniTwin
             if (this.m_Dragging)
             {
                 float3 dragDiff = (float3)Input.mousePosition - this.m_DragStartMouse;
-                globeAnchor.longitudeLatitudeHeight = (double3)(this.m_LongitudeLatitudeHeight - dragDiff * OmniWorld.CameraSpeed);
+                globeAnchor.longitudeLatitudeHeight = this.m_DragStartGeoCoord - dragDiff * OmniWorld.CameraSpeed * height;
             }
+
+            double3 geoCoord = globeAnchor.longitudeLatitudeHeight;
+            geoCoord.z -= (Input.mouseScrollDelta.y * OmniWorld.CameraSpeed.z) * height;
+            globeAnchor.longitudeLatitudeHeight = geoCoord;
         }
 
         public void OnDestroy(ref SystemState state)

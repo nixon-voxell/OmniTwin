@@ -11,6 +11,16 @@ namespace OmniTwin
 
         private void Awake()
         {
+            this.UpdateOmniWorld();
+        }
+
+        private void Update()
+        {
+            this.UpdateOmniWorld();
+        }
+
+        private void UpdateOmniWorld()
+        {
             OmniWorld.CesiumGlobeAnchor = this.m_CesiumGlobeAnchor;
             OmniWorld.CameraSpeed = this.m_CameraSpeed;
         }
