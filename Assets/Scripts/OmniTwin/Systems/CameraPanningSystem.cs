@@ -49,5 +49,5 @@ namespace OmniTwin
         public void OnDestroy(ref SystemState state)
         {
         }
-}
+    }
 }
