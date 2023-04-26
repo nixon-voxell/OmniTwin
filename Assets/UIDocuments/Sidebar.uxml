@@ -1,18 +1,21 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../UIElementsSchema/UIElements.xsd" editor-extension-mode="True">
-    <ui:VisualElement name="VisualElement" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0);" />
+    <Style src="project://database/Assets/UIDocuments/UI%20Scripts/USS/HorizontalBar.uss?fileID=7433441132597879392&amp;guid=e49b9c7e1d0044b47aadabf3d2373f75&amp;type=3#HorizontalBar" />
+    <Style src="project://database/Assets/UIDocuments/UI%20Scripts/USS/LineChart.uss?fileID=7433441132597879392&amp;guid=f176fc50cb3ddd749823f813ca43fbb7&amp;type=3#LineChart" />
+    <Style src="project://database/Assets/UIDocuments/UI%20Scripts/USS/progressBar.uss?fileID=7433441132597879392&amp;guid=6f68c2c1ad6dec7419545fe8d16edb4c&amp;type=3#progressBar" />
     <ui:VisualElement name="VisualElement" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); flex-direction: column; align-self: flex-end; justify-content: center; align-items: auto; background-image: none; -unity-background-image-tint-color: rgb(255, 255, 255);">
-        <ui:Label tabindex="-1" text="Location Name" display-tooltip-when-elided="true" name="location_name" style="font-size: 20px;" />
-        <ui:Label tabindex="-1" text="Flood Alerts" display-tooltip-when-elided="true" style="height: 17px; width: 129px; font-size: 15px; -unity-text-align: upper-right;" />
-        <ui:ProgressBar value="50" title="my-progress" name="Flood_Index" style="font-size: 13px; -unity-text-outline-color: rgba(0, 0, 0, 0); color: rgb(0, 0, 0); -unity-font-style: normal; -unity-background-image-tint-color: rgb(255, 255, 255); background-image: none; -unity-background-scale-mode: stretch-to-fill; display: flex; opacity: 1;" />
-        <ui:Label tabindex="-1" text="Air Pollution Index" display-tooltip-when-elided="true" style="height: 16px; width: 180px; -unity-text-align: middle-right; white-space: nowrap; font-size: 15px;" />
-        <ui:ProgressBar value="22" title="my-progress" name="Air_Pollution_Index" style="font-size: 13px; height: 22px;" />
-        <ui:Label tabindex="-1" text="Humidity Index" display-tooltip-when-elided="true" style="height: 12px; width: 151px; -unity-text-align: middle-right; white-space: nowrap; font-size: 15px;" />
-        <ui:ProgressBar value="30" title="my-progress" name="Humidty_Index" style="font-size: 13px;" />
-        <ui:Label tabindex="-1" text="Risk Index" display-tooltip-when-elided="true" style="height: 9px; width: 104px; -unity-text-align: middle-right; white-space: nowrap; font-size: 15px;" />
-        <ui:ProgressBar value="22" title="my-progress" name="Risk_Index" style="font-size: 13px;" />
-        <ui:DropdownField label="Graph" index="-1" choices="System.Collections.Generic.List`1[System.String]" style="font-size: 13px;" />
-        <ui:Label tabindex="-1" text="Latitude: " display-tooltip-when-elided="true" name="latitude" style="height: 17px; width: 129px; font-size: 15px; -unity-text-align: upper-right;" />
-        <ui:Label tabindex="-1" text="Longitude:" display-tooltip-when-elided="true" name="longitude" style="height: 17px; width: 129px; font-size: 15px; -unity-text-align: upper-right;" />
+        <ui:Label tabindex="-1" text="Location Name" display-tooltip-when-elided="true" name="location_name" style="font-size: 20px; -unity-text-align: middle-left; color: rgb(255, 255, 255);" />
+        <ui:Label tabindex="-1" text="Longitude:" display-tooltip-when-elided="true" name="longitude" style="height: 17px; width: 129px; font-size: 15px; -unity-text-align: lower-right; color: rgb(255, 255, 255);" />
+        <ui:Label tabindex="-1" text="Latitude: " display-tooltip-when-elided="true" name="latitude" style="height: 17px; width: 129px; font-size: 15px; -unity-text-align: middle-right; color: rgb(255, 255, 255);" />
+        <ui:Label tabindex="-1" text="Flood Alerts" display-tooltip-when-elided="true" name="latitude" style="height: 17px; width: 129px; font-size: 15px; -unity-text-align: middle-right; color: rgb(255, 255, 255);" />
+        <ui:ProgressBar value="50" title="Flood Alerts" name="FloodAlerts" focusable="true" class="unity-progress-bar" style="font-size: 13px; -unity-text-outline-color: rgba(0, 0, 0, 0); color: rgb(0, 0, 0); -unity-font-style: normal; -unity-background-image-tint-color: rgb(255, 255, 255); background-image: none; -unity-background-scale-mode: stretch-to-fill; display: flex; opacity: 1; max-width: none; min-width: 150px; background-color: rgba(255, 0, 0, 0);" />
+        <ui:Label tabindex="-1" text="Air Pollution Index" display-tooltip-when-elided="true" name="latitude" style="height: 17px; width: 129px; font-size: 15px; -unity-text-align: middle-right; color: rgb(255, 255, 255);" />
+        <ui:ProgressBar value="22" title="Air Pollution Index" name="AirPollutionIndex" high-value="350" focusable="true" style="font-size: 13px; height: 22px; max-width: none; min-width: 150px; color: rgb(0, 0, 0);" />
+        <ui:Label tabindex="-1" text="Humidity (%)" display-tooltip-when-elided="true" name="latitude" style="height: 17px; width: 129px; font-size: 15px; -unity-text-align: middle-right; color: rgb(255, 255, 255);" />
+        <ui:ProgressBar value="0" title="Humidity Index" name="HumidityIndex" high-value="100" focusable="true" class="container" style="font-size: 13px; max-width: none; min-width: 150px; color: rgb(0, 0, 0);" />
+        <ui:Label tabindex="-1" text="Risk Index" display-tooltip-when-elided="true" name="latitude" style="height: 17px; width: 129px; font-size: 15px; -unity-text-align: middle-right; color: rgb(255, 255, 255);" />
+        <ui:ProgressBar value="22" title="Risk Index" name="Risk_Index" tabindex="0" focusable="true" class="progressBar" style="font-size: 13px; align-items: stretch; max-width: none; min-width: 150px; background-image: none; -unity-background-image-tint-color: rgb(255, 255, 255); color: rgb(0, 0, 0);" />
+        <ui:DropdownField label="Graph" index="-1" choices="System.Collections.Generic.List`1[System.String]" style="font-size: 13px; color: rgb(255, 255, 255);" />
+        <BarChart.HorizontalBar />
+        <lineGraph.LineChart focusable="false" tabindex="0" class="graph-external-background graph-background horizontal-graph-axe graph-line" style="transition-property: all; transition-duration: 0s; transition-timing-function: ease; transition-delay: 0s; height: 77px; margin-top: 10px;" />
     </ui:VisualElement>
-    <ui:IMGUIContainer />
 </ui:UXML>
