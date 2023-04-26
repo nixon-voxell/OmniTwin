@@ -8,21 +8,21 @@ namespace OmniTwin
     {
         [SerializeField] private CesiumGlobeAnchor m_CesiumGlobeAnchor;
         [SerializeField] private float3 m_CameraSpeed;
+        [SerializeField] private float m_CamSmoothing;
+
+        public CesiumGlobeAnchor CesiumGlobeAnchor => this.m_CesiumGlobeAnchor;
+        public double3 CameraSpeed => this.m_CameraSpeed;
+        public float CamSmoothing => this.m_CamSmoothing;
 
         private void Awake()
         {
-            this.UpdateOmniWorld();
-        }
-
-        private void Update()
-        {
-            this.UpdateOmniWorld();
-        }
-
-        private void UpdateOmniWorld()
-        {
-            OmniWorld.CesiumGlobeAnchor = this.m_CesiumGlobeAnchor;
-            OmniWorld.CameraSpeed = this.m_CameraSpeed;
+            if (OmniWorld.HybridDynCameraMono == null)
+            {
+                OmniWorld.HybridDynCameraMono = this;
+            } else
+            {
+                Debug.LogError("There are more than 1 HybridDynCameraMono in the scene.");
+            }
         }
     }
 }
