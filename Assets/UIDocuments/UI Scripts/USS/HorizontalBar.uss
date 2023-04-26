@@ -1,4 +1,4 @@
-﻿.horizontal-bar {
+.horizontal-bar {
     flex-grow: 0;
     height: 100%;
     background-color: rgb(57, 155, 156);
@@ -39,4 +39,5 @@
     border-bottom-left-radius: 5px;
     border-top-right-radius: 5px;
     border-bottom-right-radius: 5px;
+    display: flex;
 }

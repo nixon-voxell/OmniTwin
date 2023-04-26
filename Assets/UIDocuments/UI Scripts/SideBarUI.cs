@@ -42,8 +42,10 @@ public class SideBarUI : MonoBehaviour
             locationName.text = responseWeather["name"];
             longitude.text = responseWeather["coord"]["lon"];
             latitude.text = responseWeather["coord"]["lat"];
-            humidityIndex.title = responseWeather["main"]["humidity"];
+            humidityIndex.title = responseWeather["main"]["humidity"] + '%';
             humidityIndex.value = float.Parse(responseWeather["main"]["humidity"]);
+            
+        
         }
        
     }
@@ -64,6 +66,7 @@ public class SideBarUI : MonoBehaviour
             var responsePollution = JSON.Parse(fetchAirPollution.downloadHandler.text);
             Debug.Log(responsePollution["list"][0]["components"]["so2"]);
             airPollutionIndex.value = float.Parse(responsePollution["list"][0]["components"]["so2"]);
+            airPollutionIndex.title = responsePollution["list"][0]["components"]["so2"];
         }
 
     }
@@ -83,6 +86,9 @@ public class SideBarUI : MonoBehaviour
         floodAlerts = root.Q<ProgressBar>("FloodAlerts");
         airPollutionIndex = root.Q<ProgressBar>("AirPollutionIndex");
         riskIndex = root.Q<ProgressBar>("RiskIndex");
+        root.Q<VisualElement>("VisualElement").style.backgroundColor= new Color(0, 0, 0, (float)0.80);
+
+
 
         //uiButton.clicked += UiButton_Clicked;
 
