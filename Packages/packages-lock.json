@@ -1,5 +1,15 @@
 {
   "dependencies": {
+    "com.cesium.unity": {
+      "version": "1.0.0",
+      "depth": 0,
+      "source": "registry",
+      "dependencies": {
+        "com.unity.mathematics": "1.2.0",
+        "com.unity.test-framework": "1.1.31"
+      },
+      "url": "https://unity.pkg.cesium.com"
+    },
     "com.unity.burst": {
       "version": "1.8.3",
       "depth": 1,
@@ -82,13 +92,12 @@
       "dependencies": {},
       "url": "https://packages.unity.com"
     },
-    "com.unity.logging": {
-      "version": "1.0.0-pre.37",
-      "depth": 1,
+    "com.unity.inputsystem": {
+      "version": "1.5.1",
+      "depth": 0,
       "source": "registry",
       "dependencies": {
-        "com.unity.burst": "1.8.3",
-        "com.unity.collections": "2.1.0-pre.18"
+        "com.unity.modules.uielements": "1.0.0"
       },
       "url": "https://packages.unity.com"
     },
@@ -97,18 +106,6 @@
       "depth": 1,
       "source": "registry",
       "dependencies": {},
-      "url": "https://packages.unity.com"
-    },
-    "com.unity.netcode": {
-      "version": "1.0.0-pre.65",
-      "depth": 0,
-      "source": "registry",
-      "dependencies": {
-        "com.unity.transport": "2.0.0-pre.6",
-        "com.unity.entities": "1.0.0-pre.65",
-        "com.unity.logging": "1.0.0-pre.37",
-        "com.unity.modules.animation": "1.0.0"
-      },
       "url": "https://packages.unity.com"
     },
     "com.unity.nuget.mono-cecil": {
@@ -223,17 +220,6 @@
       },
       "url": "https://packages.unity.com"
     },
-    "com.unity.transport": {
-      "version": "2.0.0-pre.6",
-      "depth": 1,
-      "source": "registry",
-      "dependencies": {
-        "com.unity.collections": "2.1.0-pre.6",
-        "com.unity.burst": "1.8.2",
-        "com.unity.mathematics": "1.2.6"
-      },
-      "url": "https://packages.unity.com"
-    },
     "com.unity.ugui": {
       "version": "1.0.0",
       "depth": 0,
@@ -242,16 +228,6 @@
         "com.unity.modules.ui": "1.0.0",
         "com.unity.modules.imgui": "1.0.0"
       }
-    },
-    "com.unity.visualscripting": {
-      "version": "1.8.0",
-      "depth": 0,
-      "source": "registry",
-      "dependencies": {
-        "com.unity.ugui": "1.0.0",
-        "com.unity.modules.jsonserialize": "1.0.0"
-      },
-      "url": "https://packages.unity.com"
     },
     "voxell.util": {
       "version": "file:UnityUtil",

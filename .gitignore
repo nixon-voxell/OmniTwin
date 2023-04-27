@@ -74,9 +74,3 @@ crashlytics-build.properties
 # OSM large data files
 /[Aa]ssets/[Ss]treamingAssets/OSMData.meta
 /[Aa]ssets/[Ss]treamingAssets/OSMData/*
-
-# Mapbox
-/[Aa]ssets/Mapbox.meta
-/[Aa]ssets/Mapbox/*
-/[Aa]ssets/[Rr]esources/Mapbox.meta
-/[Aa]ssets/[Rr]esources/Mapbox/*
