@@ -21,6 +21,7 @@ public class SideBarUI : MonoBehaviour
 
     public void UpateDetails(string location, double lon, double lat)
     {
+        this.Start();
         this.StartCoroutine(this.ReadWeather(location, lon, lat));
         this.StartCoroutine(this.ReadPollution(lon, lat));
     }
