@@ -43,7 +43,6 @@ public class SideBarUI : MonoBehaviour
             Debug.Log(fetchWeatherAPI.error);
         } else
         {
-            Debug.Log("Fecth Weather Successfully!");
             JSONNode responseWeather = JSON.Parse(fetchWeatherAPI.downloadHandler.text);
 
             // this.m_LocationLbl.text = responseWeather["name"];
@@ -68,7 +67,6 @@ public class SideBarUI : MonoBehaviour
             Debug.Log(fetchAirPollution.error);
         } else
         {
-            Debug.Log("Fetch Pollution Successfully!");
             JSONNode responsePollution = JSON.Parse(fetchAirPollution.downloadHandler.text);
 
             this.m_AirPollutionIdxBar.value = float.Parse(responsePollution["list"][0]["components"]["so2"]);
