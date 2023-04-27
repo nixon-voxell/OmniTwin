@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Scripts/OpenStreetMapTest.cs.meta
+guid: 7df944639725f9d4188cb33b07866b26
+========
+guid: f51dd3cfe8a344c02b4f5e05a32f1bce
+>>>>>>>> main:Assets/Scripts/SideBarUI.cs.meta
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

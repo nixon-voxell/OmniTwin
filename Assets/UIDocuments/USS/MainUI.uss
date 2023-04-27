@@ -1,0 +1,14 @@
+.icon {
+    width: 40px;
+    height: 40px;
+    -unity-text-align: middle-center;
+    text-overflow: ellipsis;
+    white-space: normal;
+    background-color: rgba(0, 0, 0, 0);
+    -unity-font-style: bold;
+    color: rgb(255, 255, 255);
+    border-left-width: 0;
+    border-right-width: 0;
+    border-top-width: 0;
+    border-bottom-width: 0;
+}
