@@ -33,14 +33,14 @@ namespace OmniTwin
             // 200.0f is the default height (magic number per se)
             float height = (float)this.m_TargetGeoCoord.z / 200.0f;
 
-            if (Input.GetMouseButtonDown(1))
+            if (Input.GetMouseButtonDown(0))
             {
                 this.m_Dragging = true;
                 this.m_DragStartMouse = Input.mousePosition;
                 this.m_DragStartGeoCoord = this.m_CurrGeoCoord;
             }
 
-            if (Input.GetMouseButtonUp(1))
+            if (Input.GetMouseButtonUp(0))
             {
                 this.m_Dragging = false;
             }

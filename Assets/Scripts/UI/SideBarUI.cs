@@ -11,6 +11,8 @@ public class SideBarUI : MonoBehaviour
     [SerializeField] private UIDocument m_Document;
     [SerializeField] private string m_APIKey;
 
+    private VisualElement m_Root;
+    private Button m_CloseBtn;
     private TextElement m_LongitudeLbl;
     private TextElement m_LocationLbl;
     private TextElement m_LatitudeLbl;
@@ -21,14 +23,13 @@ public class SideBarUI : MonoBehaviour
 
     public void UpateDetails(string location, double lon, double lat)
     {
-        this.Start();
         this.StartCoroutine(this.ReadWeather(location, lon, lat));
         this.StartCoroutine(this.ReadPollution(lon, lat));
     }
 
-    public void SetDocumentActive(bool active)
+    public void SetDocumentVisible(bool active)
     {
-        this.m_Document.enabled = active;
+        this.m_Root.visible = active;
     }
 
     private IEnumerator ReadWeather(string location, double lon, double lat)
@@ -78,14 +79,23 @@ public class SideBarUI : MonoBehaviour
     {
         UIManager.Instance.SideBarUI = this;
 
-        VisualElement root = GetComponent<UIDocument>().rootVisualElement;
+        this.m_Root = GetComponent<UIDocument>().rootVisualElement;
 
-        this.m_LocationLbl = root.Q<TextElement>("location-lbl");
-        this.m_LongitudeLbl = root.Q<TextElement>("longitude-lbl");
-        this.m_LatitudeLbl = root.Q<TextElement>("latitude-lbl");
-        this.m_FloodAlertsLbl = root.Q<ProgressBar>("flood-alerts-bar");
-        this.m_AirPollutionIdxBar = root.Q<ProgressBar>("api-bar");
-        this.m_HumidityIdxBar = root.Q<ProgressBar>("humid-idx-bar");
-        this.m_RiskIdxBar = root.Q<ProgressBar>("risk-idx-bar");
+        this.m_CloseBtn = this.m_Root.Q<Button>("close-btn");
+        this.m_LocationLbl = this.m_Root.Q<TextElement>("location-lbl");
+        this.m_LongitudeLbl = this.m_Root.Q<TextElement>("longitude-lbl");
+        this.m_LatitudeLbl = this.m_Root.Q<TextElement>("latitude-lbl");
+        this.m_FloodAlertsLbl = this.m_Root.Q<ProgressBar>("flood-alerts-bar");
+        this.m_AirPollutionIdxBar = this.m_Root.Q<ProgressBar>("api-bar");
+        this.m_HumidityIdxBar = this.m_Root.Q<ProgressBar>("humid-idx-bar");
+        this.m_RiskIdxBar = this.m_Root.Q<ProgressBar>("risk-idx-bar");
+
+        this.m_CloseBtn.clicked += () =>
+        {
+            this.SetDocumentVisible(false);
+        };
+
+        // set visibility to false by default
+        this.SetDocumentVisible(false);
     }
 }

@@ -10,13 +10,13 @@ public class UIManager : MonoBehaviour
 
     public void ShowSideBarWithInfo(string location, double lon, double lat)
     {
-        this.SideBarUI.SetDocumentActive(true);
+        this.SideBarUI.SetDocumentVisible(true);
         this.SideBarUI.UpateDetails(location, lon, lat);
     }
 
     public void HideSidebar()
     {
-        this.SideBarUI.SetDocumentActive(false);
+        this.SideBarUI.SetDocumentVisible(false);
     }
 
     private void Awake()

@@ -37,9 +37,6 @@ namespace OmniTwin
                     UIManager.Instance.ShowSideBarWithInfo(
                         tmproUI.text, anchor.longitudeLatitudeHeight.x, anchor.longitudeLatitudeHeight.y
                     );
-                } else
-                {
-                    UIManager.Instance.HideSidebar();
                 }
             }
         }

@@ -29,7 +29,7 @@ public class MainUI : MonoBehaviour
         Debug.Log("Recommendation Button Pressed");
     }
 
-    private void Start()
+    private void OnEnable()
     {
         UIManager.Instance.MainUI = this;
 
