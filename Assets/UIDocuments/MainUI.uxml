@@ -1,7 +1,7 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../UIElementsSchema/UIElements.xsd" editor-extension-mode="True">
     <Style src="project://database/Assets/UIDocuments/USS/MainUI.uss?fileID=7433441132597879392&amp;guid=dca7ae48f4fd5a847b597ebe109bb073&amp;type=3#MainUI" />
-    <ui:VisualElement name="VisualElement" style="flex-shrink: 0; flex-grow: 1;">
-        <ui:VisualElement name="body" style="flex-shrink: 0; flex-grow: 1; flex-direction: row; padding-left: 10px; padding-right: 10px; padding-top: 10px; padding-bottom: 10px;">
+    <ui:VisualElement name="VisualElement" picking-mode="Ignore" style="flex-shrink: 0; flex-grow: 1;">
+        <ui:VisualElement name="body" picking-mode="Ignore" style="flex-shrink: 0; flex-grow: 1; flex-direction: row; padding-left: 10px; padding-right: 10px; padding-top: 10px; padding-bottom: 10px;">
             <ui:Button text="2D" display-tooltip-when-elided="true" name="mode-btn" class="click-cursor" style="height: 46px; -unity-text-align: middle-center; width: 63px; -unity-font-style: bold; background-color: rgb(0, 0, 0); color: rgb(255, 255, 255); border-top-left-radius: 5px; border-bottom-left-radius: 5px; border-top-right-radius: 5px; border-bottom-right-radius: 5px;" />
         </ui:VisualElement>
         <ui:VisualElement name="footer" style="flex-grow: 0; flex-direction: row; flex-shrink: 0; background-color: rgb(25, 25, 25); padding-bottom: 40px; padding-top: 20px; padding-left: 10px; padding-right: 10px;">

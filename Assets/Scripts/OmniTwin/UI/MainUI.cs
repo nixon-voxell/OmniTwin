@@ -4,10 +4,14 @@ using UnityEngine.UIElements;
 public class MainUI : MonoBehaviour
 {
     [SerializeField] private UIDocument m_Document;
+
+    private VisualElement m_Root;
     private Button m_ModeBtn;
     private Button m_AlertBtn;
     private Button m_WarningBtn;
     private Button m_RecommendationBtn;
+
+    public VisualElement Root => this.m_Root;
 
     private void ModeBtnPressed()
     {
@@ -33,18 +37,18 @@ public class MainUI : MonoBehaviour
     {
         UIManager.Instance.MainUI = this;
 
-        VisualElement root = GetComponent<UIDocument>().rootVisualElement;
+        this.m_Root = this.m_Document.rootVisualElement;
 
-        m_ModeBtn = root.Q<Button>("mode-btn");
+        m_ModeBtn = this.m_Root.Q<Button>("mode-btn");
         m_ModeBtn.clicked += ModeBtnPressed;
 
-        m_AlertBtn = root.Q<Button>("alert-btn");
+        m_AlertBtn = this.m_Root.Q<Button>("alert-btn");
         m_AlertBtn.clicked += AlertBtnPressed;
 
-        m_WarningBtn = root.Q<Button>("warning-btn");
+        m_WarningBtn = this.m_Root.Q<Button>("warning-btn");
         m_WarningBtn.clicked += WarningBtnPressed;
 
-        m_RecommendationBtn = root.Q<Button>("recommend-btn");
+        m_RecommendationBtn = this.m_Root.Q<Button>("recommend-btn");
         m_RecommendationBtn.clicked += RecommendationBtnPressed;
     }
 }

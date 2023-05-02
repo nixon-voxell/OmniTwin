@@ -1,0 +1,43 @@
+.close-icon-button {
+    background-image: url('project://database/Assets/Sprites/SimpleIcon/style01/shape037_style01_color01.png?fileID=2800000&guid=fdecb6e887e252441a706209d63d4d30&type=3#shape037_style01_color01');
+    background-color: rgba(0, 0, 0, 0);
+    padding-left: 0;
+    padding-right: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+    margin-left: 0;
+    margin-right: 0;
+    margin-top: 0;
+    margin-bottom: 0;
+    width: 48px;
+    height: 48px;
+    border-left-width: 0;
+    border-right-width: 0;
+    border-top-width: 0;
+    border-bottom-width: 0;
+}
+
+.close-icon-button:hover {
+    background-image: url('project://database/Assets/Sprites/SimpleIcon/style01/shape037_style01_color07.png?fileID=2800000&guid=f2595a2a52ccb3340882a8d83320adbc&type=3#shape037_style01_color07');
+}
+
+.icon-button {
+    width: 64px;
+    height: 64px;
+    background-image: url('project://database/Assets/Sprites/SimpleIcon/style01/shape099_style01_color09.png?fileID=2800000&guid=aca10737377ddb84aa8e3751e7cb02f4&type=3#shape099_style01_color09');
+    background-color: rgba(255, 255, 255, 0);
+    border-left-width: 0;
+    border-right-width: 0;
+    border-top-width: 0;
+    border-bottom-width: 0;
+}
+
+.icon-button:hover {
+    background-image: url('project://database/Assets/Sprites/SimpleIcon/style01/shape099_style01_color03.png?fileID=2800000&guid=65691b6b63ff76442a87659c0a1aa691&type=3#shape099_style01_color03');
+    background-color: rgba(255, 255, 255, 0);
+}
+
+.icon-button:focus {
+    background-image: url('project://database/Assets/Sprites/SimpleIcon/style01/shape099_style01_color03.png?fileID=2800000&guid=65691b6b63ff76442a87659c0a1aa691&type=3#shape099_style01_color03');
+    background-color: rgba(255, 255, 255, 0);
+}
