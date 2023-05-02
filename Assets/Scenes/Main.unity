@@ -835,7 +835,6 @@ GameObject:
   m_Component:
   - component: {fileID: 889424122}
   - component: {fileID: 889424123}
-  - component: {fileID: 889424124}
   m_Layer: 0
   m_Name: LocIndicators
   m_TagString: Untagged
@@ -892,18 +891,6 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
---- !u!114 &889424124
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 889424121}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 36913ea01292f7b4986d811c2fa3e2ea, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1099965394
 GameObject:
   m_ObjectHideFlags: 0
