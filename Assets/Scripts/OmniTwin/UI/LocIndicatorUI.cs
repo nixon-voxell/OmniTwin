@@ -15,7 +15,7 @@ public class LocIndicatorUI : MonoBehaviour
     private Label m_LocLbl;
     private Button m_LocBtn;
 
-    private void Start()
+    private void OnEnable()
     {
         this.m_Root = this.m_Document.rootVisualElement;
 

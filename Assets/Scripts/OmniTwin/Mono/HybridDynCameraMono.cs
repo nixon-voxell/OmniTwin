@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.VFX;
 using Unity.Mathematics;
 using CesiumForUnity;
 
@@ -8,11 +9,20 @@ namespace OmniTwin
     {
         [SerializeField] private CesiumGlobeAnchor m_CesiumGlobeAnchor;
         [SerializeField] private float3 m_CameraSpeed;
-        [SerializeField] private float m_CamSmoothing;
+        [SerializeField] private float m_CamMovementSmoothing;
+        [SerializeField] private float m_CamRotationSmooting;
+        [SerializeField] private double3 m_MinPos;
+        [SerializeField] private double3 m_MaxPos;
+
+        [SerializeField] private VisualEffect m_RainVFX;
 
         public CesiumGlobeAnchor CesiumGlobeAnchor => this.m_CesiumGlobeAnchor;
         public double3 CameraSpeed => this.m_CameraSpeed;
-        public float CamSmoothing => this.m_CamSmoothing;
+        public float CamMovementSmoothing => this.m_CamMovementSmoothing;
+        public float CamRotationSmoothing => this.m_CamRotationSmooting;
+        public double3 MinPos => this.m_MinPos;
+        public double3 MaxPos => this.m_MaxPos;
+        public VisualEffect RainVFX => this.m_RainVFX;
 
         private void Awake()
         {

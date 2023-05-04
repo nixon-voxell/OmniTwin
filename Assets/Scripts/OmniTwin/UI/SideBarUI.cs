@@ -32,6 +32,11 @@ public class SideBarUI : MonoBehaviour
         this.m_Root.visible = active;
     }
 
+    public void Close()
+    {
+        this.SetDocumentVisible(false);
+    }
+
     private IEnumerator ReadWeather(string location, double lon, double lat)
     {
         string weatherURL = $"{URL}weather?lon={lon}&lat={lat}&appid={this.m_APIKey}";
@@ -79,7 +84,7 @@ public class SideBarUI : MonoBehaviour
     {
         UIManager.Instance.SideBarUI = this;
 
-        this.m_Root = GetComponent<UIDocument>().rootVisualElement;
+        this.m_Root = this.m_Document.rootVisualElement;
 
         this.m_CloseBtn = this.m_Root.Q<Button>("close-btn");
         this.m_LocationLbl = this.m_Root.Q<TextElement>("location-lbl");
@@ -90,10 +95,7 @@ public class SideBarUI : MonoBehaviour
         this.m_HumidityIdxBar = this.m_Root.Q<ProgressBar>("humid-idx-bar");
         this.m_RiskIdxBar = this.m_Root.Q<ProgressBar>("risk-idx-bar");
 
-        this.m_CloseBtn.clicked += () =>
-        {
-            this.SetDocumentVisible(false);
-        };
+        this.m_CloseBtn.clicked += this.Close;
 
         // set visibility to false by default
         this.SetDocumentVisible(false);

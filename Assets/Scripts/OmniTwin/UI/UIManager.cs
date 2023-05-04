@@ -7,6 +7,15 @@ public class UIManager : MonoBehaviour
 
     [InspectOnly] public MainUI MainUI;
     [InspectOnly] public SideBarUI SideBarUI;
+    [InspectOnly] public DetectionImageUI DetectionImageUI;
+
+    [SerializeField] private GameObject m_Indicators;
+    [SerializeField] private GameObject m_LocIndicators;
+    [SerializeField] private GameObject m_FloodIndicators;
+
+    public GameObject Indicators => this.m_Indicators;
+    public GameObject LocIndicators => this.m_LocIndicators;
+    public GameObject FloodIndicators => this.m_FloodIndicators;
 
     public void ShowSideBarWithInfo(string location, double lon, double lat)
     {
