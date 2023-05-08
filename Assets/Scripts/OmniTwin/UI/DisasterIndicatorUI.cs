@@ -55,6 +55,11 @@ public class DisasterIndicatorUI : MonoBehaviour
         );
     }
 
+    public void SetIcon(Texture2D icon)
+    {
+        this.m_DisasterBtn.style.backgroundImage = icon;
+    }
+
     private void LateUpdate()
     {
         // if (Camera.main == null) return;

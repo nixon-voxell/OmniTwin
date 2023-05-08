@@ -32,6 +32,7 @@ public class MainUI : MonoBehaviour
 
         this.StartCoroutine(this.MoveCameraToOffset(targetGeoCoord, this.m_CamMovementSpeed));
         this.StartCoroutine(this.RotateCameraToEuler(targetEuler, this.m_CamRotationSpeed));
+
         if (disasterData.Category == "Flood")
         {
             this.StartCoroutine(this.StartRainFall(this.m_RainVFXSpeed));

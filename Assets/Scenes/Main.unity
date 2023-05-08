@@ -353,6 +353,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Document: {fileID: 243406192}
+  m_DetectionTexture: {fileID: 0}
 --- !u!1 &281109697
 GameObject:
   m_ObjectHideFlags: 0
@@ -505,6 +506,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_IndicatorPrefab: {fileID: 452038215291831481, guid: d2796267ec1b45749a0709dacc5ba22f,
     type: 3}
+  m_Icons:
+  - Name: Flood
+    Icon: {fileID: 2800000, guid: b4d3edc9b41d6a746ab5630bea18d4c4, type: 3}
+  - Name: Fire
+    Icon: {fileID: 2800000, guid: f06e82b8317490a4b9a56d7bd2bbc402, type: 3}
 --- !u!1 &327301531
 GameObject:
   m_ObjectHideFlags: 0
@@ -1187,12 +1193,12 @@ MonoBehaviour:
   m_CamMovementSmoothing: 10
   m_CamRotationSmooting: 5
   m_MinPos:
-    x: 101.36446832
-    y: 2.99950025
+    x: 101
+    y: 1.5
     z: 1362.9379
   m_MaxPos:
-    x: 101.7190706
-    y: 3.21913491
+    x: 102
+    y: 3.5
     z: 18267.3271
   m_RainVFX: {fileID: 2023263807}
 --- !u!1 &1320202677
@@ -1994,5 +2000,5 @@ MonoBehaviour:
   _maximumTextureSize: 2048
   _maximumSimultaneousTileLoads: 20
   _subTileCacheBytes: 16777216
-  _ionAssetID: 2
+  _ionAssetID: 3
   _ionAccessToken: 

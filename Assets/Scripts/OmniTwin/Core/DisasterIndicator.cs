@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
 using SimpleJSON;
@@ -21,15 +22,32 @@ public struct DisasterData
 
 public class DisasterIndicator : MonoBehaviour
 {
+    [System.Serializable]
+    private struct DisasterIcon
+    {
+        public string Name;
+        public Texture2D Icon;
+    }
+
     public static readonly string URL = "https://firestore.googleapis.com/v1/projects/mranti-a39d6/databases/(default)/documents/detection";
 
     [SerializeField] private DisasterIndicatorUI m_IndicatorPrefab;
+    [SerializeField] private DisasterIcon[] m_Icons;
+
+    private Dictionary<string, Texture2D> m_IconMaps;
 
     private DisasterIndicatorUI[] m_IndicatorUIPool;
 
     private void OnEnable()
     {
         this.StartCoroutine(this.ReadDisasterData());
+        this.m_IconMaps = new Dictionary<string, Texture2D>(this.m_Icons.Length);
+
+        for (int i = 0; i < this.m_Icons.Length; i++)
+        {
+            DisasterIcon icon = this.m_Icons[i];
+            this.m_IconMaps.Add(icon.Name, icon.Icon);
+        }
     }
 
     private IEnumerator ReadDisasterData()
@@ -105,8 +123,18 @@ public class DisasterIndicator : MonoBehaviour
             // initialize disaster ui with data
             for (int f = 0; f < disasterData.Length; f++)
             {
+                DisasterData data = disasterData[f];
+
                 this.m_IndicatorUIPool[f].gameObject.SetActive(true);
-                this.m_IndicatorUIPool[f].Init(disasterData[f]);
+                this.m_IndicatorUIPool[f].Init(data);
+
+                // set icon if available
+                Texture2D icon;
+                this.m_IconMaps.TryGetValue(data.Category, out icon);
+                if (icon != null)
+                {
+                    this.m_IndicatorUIPool[f].SetIcon(icon);
+                }
             }
         }
     }

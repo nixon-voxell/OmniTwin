@@ -49,14 +49,16 @@
     border-bottom-width: 0;
     background-image: url('project://database/Assets/Sprites/SimpleIcon/style01/shape050_style01_color08.png?fileID=2800000&guid=4b4f62e392ff5574ebfcb917ab319d82&type=3#shape050_style01_color08');
     background-color: rgba(0, 0, 0, 0);
+    transition-duration: 0.1s;
+    transition-timing-function: ease-in-out-cubic;
 }
 
 .disaster-icon-button:hover {
-    background-image: url('project://database/Assets/Sprites/SimpleIcon/style01/shape050_style01_color02.png?fileID=2800000&guid=8de495b6f041af949b03240dd50a5a46&type=3#shape050_style01_color02');
+    -unity-background-image-tint-color: rgb(128, 128, 128);
 }
 
 .disaster-icon-button:focus {
-    background-image: url('project://database/Assets/Sprites/SimpleIcon/style01/shape050_style01_color02.png?fileID=2800000&guid=8de495b6f041af949b03240dd50a5a46&type=3#shape050_style01_color02');
+    -unity-background-image-tint-color: rgb(128, 128, 128);
 }
 
 .loc-label {
