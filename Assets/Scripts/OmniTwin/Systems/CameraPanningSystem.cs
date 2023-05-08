@@ -16,6 +16,7 @@ namespace OmniTwin
 
         public void OnCreate(ref SystemState state)
         {
+            OmniWorld.IsCameraLocked = false;
         }
 
         public void OnStartRunning(ref SystemState state)
@@ -28,6 +29,7 @@ namespace OmniTwin
 
         public void OnUpdate(ref SystemState state)
         {
+            if (OmniWorld.IsCameraLocked == true) return;
             HybridDynCameraMono hybridDynCam = OmniWorld.HybridDynCameraMono;
 
             // 200.0f is the default height (magic number per se)
@@ -52,15 +54,20 @@ namespace OmniTwin
             }
 
             this.m_TargetGeoCoord.z -= (Input.mouseScrollDelta.y * hybridDynCam.CameraSpeed.z) * height;
+            this.m_TargetGeoCoord = math.clamp(this.m_TargetGeoCoord, hybridDynCam.MinPos, hybridDynCam.MaxPos);
 
             this.m_CurrGeoCoord = math.lerp(
                 this.m_CurrGeoCoord, this.m_TargetGeoCoord,
-                SystemAPI.Time.DeltaTime * OmniWorld.HybridDynCameraMono.CamSmoothing
+                SystemAPI.Time.DeltaTime * OmniWorld.HybridDynCameraMono.CamMovementSmoothing
             );
 
             // get globe anchor from singleton
-            CesiumGlobeAnchor globeAnchor = hybridDynCam.CesiumGlobeAnchor;
-            globeAnchor.longitudeLatitudeHeight = this.m_CurrGeoCoord;
+            CesiumGlobeAnchor anchor = hybridDynCam.CesiumGlobeAnchor;
+            anchor.longitudeLatitudeHeight = this.m_CurrGeoCoord;
+            anchor.rotationEastUpNorth = math.slerp(
+                anchor.rotationEastUpNorth, quaternion.Euler(math.radians(90.0f), 0.0f, 0.0f),
+                Time.deltaTime * OmniWorld.HybridDynCameraMono.CamRotationSmoothing
+            );
         }
 
         public void OnStopRunning(ref SystemState state)

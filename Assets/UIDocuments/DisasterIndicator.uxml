@@ -1,0 +1,6 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/UIDocuments/USS/Icon.uss?fileID=7433441132597879392&amp;guid=ce765ee15dba226469413d6b57c6c619&amp;type=3#Icon" />
+    <ui:VisualElement name="indicator" picking-mode="Ignore" style="background-color: rgba(0, 0, 0, 0); align-items: center; align-self: flex-start;">
+        <ui:Button display-tooltip-when-elided="true" name="disaster-btn" class="icon-button flood-icon-button disaster-icon-button" />
+    </ui:VisualElement>
+</ui:UXML>
