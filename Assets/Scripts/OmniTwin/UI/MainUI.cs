@@ -111,7 +111,7 @@ public class MainUI : MonoBehaviour
 
         if (request.result != UnityWebRequest.Result.Success)
         {
-            Debug.Log(request.error);
+            Debug.LogWarning(request.error);
         } else
         {
             UIManager.Instance.DetectionImageUI.SetTexture(((DownloadHandlerTexture)(request.downloadHandler)).texture);

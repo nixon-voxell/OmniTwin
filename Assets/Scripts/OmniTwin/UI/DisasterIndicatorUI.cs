@@ -17,6 +17,7 @@ public class DisasterIndicatorUI : MonoBehaviour
     private VisualElement m_Indicator;
     private Button m_DisasterBtn;
     private DisasterData m_DisasterData;
+    private Vector3 m_SphereScale;
 
     private void OnEnable()
     {
@@ -56,12 +57,14 @@ public class DisasterIndicatorUI : MonoBehaviour
 
     private void LateUpdate()
     {
+        // if (Camera.main == null) return;
+
         Vector2 panelPos;
         panelPos = RuntimePanelUtils.CameraTransformWorldToPanel(this.m_Root.panel, this.transform.position, Camera.main);
 
         float width = this.m_Indicator.contentRect.width;
         float height = this.m_Indicator.contentRect.height;
 
-        this.m_Indicator.style.translate = new StyleTranslate(new Translate(panelPos.x - width * 0.5f, panelPos.y - height));
+        this.m_Indicator.style.translate = new StyleTranslate(new Translate(panelPos.x - width * 0.5f, panelPos.y - height * 0.5f));
     }
 }
