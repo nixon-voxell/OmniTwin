@@ -1253,8 +1253,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Size:
-    x: 1000
-    y: 1000
+    x: 256
+    y: 256
   m_TargetCamera: {fileID: 1274426495}
   m_mat_Depth: {fileID: 2100000, guid: da77b0ef7a531024686dd346e3737d6c, type: 2}
   m_tex_HeightMap: {fileID: 0}
@@ -1632,7 +1632,7 @@ Camera:
     width: 1
     height: 1
   near clip plane: 0.5
-  far clip plane: 1000
+  far clip plane: 2000
   field of view: 60
   orthographic: 1
   orthographic size: 2000
@@ -1956,7 +1956,7 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 564efb1169820ca4e916d2781459989c,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

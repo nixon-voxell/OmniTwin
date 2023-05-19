@@ -1,0 +1,10 @@
+uniform float _Height;
+
+RWTexture2D<float> tex_Depth;
+
+#pragma kernel PropagateWater
+[numthreads(8, 8, 1)]
+void PropagateWater(uint2 DTid : SV_DispatchThreadID)
+{
+    // tex_Depth[DTid] *= _Height;
+}

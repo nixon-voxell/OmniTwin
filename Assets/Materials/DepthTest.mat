@@ -59,7 +59,7 @@ Material:
     - _DepthOffset: -98.86
     - _DepthPower: 1
     - _LOD: 0
-    - _MaxHeight: 0.5
+    - _MaxHeight: 1
     - _QueueControl: 0
     - _QueueOffset: 0
     m_Colors:
