@@ -1,38 +1,20 @@
 using UnityEngine;
 using Unity.Mathematics;
-using CesiumForUnity;
 
-public class FloodSimulation : MonoBehaviour
+public static class FloodSimulation
 {
-    [SerializeField] private int2 m_Size;
-    [SerializeField] private Camera m_HeightCamera;
-    [SerializeField] private RenderTexture m_tex_Depth;
-    [SerializeField] private Texture2D m_tex_HeigthMap;
-
-    private void Start()
+    /// <summary>Create depth render texture.</summary>
+    private static RenderTexture CreateTexture(int2 size, int depthBits = 32)
     {
-        this.m_tex_Depth = new RenderTexture(this.m_Size.x, this.m_Size.y, 32, RenderTextureFormat.Depth);
-
-        // setup camera to render depth
-        this.m_HeightCamera.depthTextureMode = DepthTextureMode.Depth;
-        this.m_HeightCamera.targetTexture = this.m_tex_Depth;
-
-        this.m_tex_HeigthMap = new Texture2D(this.m_Size.x, this.m_Size.y, TextureFormat.RFloat, false);
+        RenderTexture tex_depth = new RenderTexture(size.x, size.y, depthBits, RenderTextureFormat.Depth);
+        tex_depth.Create();
+        return tex_depth;
     }
 
-    [ContextMenu("Render")]
-    private void Render()
+    /// <summary>Setup camera to render depth.</summary>
+    private static void SetupCamera(Camera camera, RenderTexture tex_depth)
     {
-        this.m_HeightCamera.Render();
-        RenderTexture.active = this.m_tex_Depth;
-        this.m_tex_HeigthMap.ReadPixels(new Rect(0, 0, this.m_tex_HeigthMap.width, this.m_tex_HeigthMap.height), 0, 0);
-        this.m_tex_HeigthMap.Apply();
-        RenderTexture.active = null;
-    }
-
-    private void OnDestroy()
-    {
-        this.m_tex_Depth.Release();
-        Object.Destroy(this.m_tex_HeigthMap);
+        camera.depthTextureMode = DepthTextureMode.Depth;
+        camera.targetTexture = tex_depth;
     }
 }

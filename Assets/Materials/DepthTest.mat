@@ -57,10 +57,12 @@ Material:
     m_Floats:
     - _DepthMultiplier: 100
     - _DepthOffset: -98.86
-    - _DepthPower: 72.4
+    - _DepthPower: 1
+    - _LOD: 0
+    - _MaxHeight: 0.5
     - _QueueControl: 0
     - _QueueOffset: 0
     m_Colors:
     - _DepthRemap: {r: 0, g: 1, b: 0, a: 0}
-    - _Remap: {r: 0.95, g: 1, b: 0, a: 0}
+    - _Remap: {r: 0, g: 1, b: 0, a: 0}
   m_BuildTextureStacks: []
