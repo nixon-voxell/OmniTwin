@@ -62,4 +62,5 @@ Material:
     - _QueueOffset: 0
     m_Colors:
     - _DepthRemap: {r: 0, g: 1, b: 0, a: 0}
+    - _Remap: {r: 0.95, g: 1, b: 0, a: 0}
   m_BuildTextureStacks: []
