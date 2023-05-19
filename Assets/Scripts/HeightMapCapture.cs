@@ -1,47 +1,33 @@
 using UnityEngine;
-using UnityEngine.Rendering;
+using Unity.Mathematics;
 
 public class HeightMapCapture : MonoBehaviour
 {
-    public RenderTexture heightMapTexture;
-    public Texture2D heightMapTexture2D;
-    public Camera targetCamera; // Reference to the orthographic camera
+    [SerializeField] private int2 m_Size;
+    [SerializeField] private Camera m_TargetCamera;
+    [SerializeField] private Material m_mat_Depth;
 
-    public void Start()
+    [SerializeField] private RenderTexture m_tex_HeightMap;
+
+    private void Start()
     {
         // Initialize the RenderTexture
-        int textureWidth = Screen.width;
-        int textureHeight = Screen.height;
-
-        heightMapTexture = new RenderTexture(textureWidth, textureHeight, 32, RenderTextureFormat.Depth);
-        heightMapTexture.enableRandomWrite = true;
-        heightMapTexture.Create();
-
-        // Initialize the Texture2D
-        heightMapTexture2D = new Texture2D(textureWidth, textureHeight, TextureFormat.RFloat, false);
+        m_tex_HeightMap = new RenderTexture(this.m_Size.x, this.m_Size.y, 32, RenderTextureFormat.Depth);
+        m_tex_HeightMap.Create();
     }
 
     private void Update()
     {
-        targetCamera.depthTextureMode = DepthTextureMode.Depth;
-        RenderTexture.active = heightMapTexture;  // Set the Render Texture as the active render target
-        targetCamera.targetTexture = heightMapTexture;
-        targetCamera.Render();                     // Render the scene from the target orthographic camera's perspective
-        targetCamera.targetTexture = null;
-
-        CommandBuffer cmd = new CommandBuffer();
-        cmd.CopyTexture(heightMapTexture.depthBuffer, this.heightMapTexture2D);
-
-        // ConvertToGrayscale();
+        this.Render();
     }
 
-    private void ConvertToGrayscale()
+    private void Render()
     {
-        RenderTexture.active = heightMapTexture;  // Set the Render Texture as the active render target
-        heightMapTexture2D.ReadPixels(new Rect(0, 0, heightMapTexture.width, heightMapTexture.height), 0, 0);
-        heightMapTexture2D.Apply();
-        RenderTexture.active = null;              // Reset the active render target
+        m_TargetCamera.depthTextureMode = DepthTextureMode.Depth;
+        RenderTexture.active = m_tex_HeightMap;
+        m_TargetCamera.targetTexture = m_tex_HeightMap;
+        m_TargetCamera.Render();
 
-        // Now you can use 'heightMapTexture2D' as a grayscale height map
+        this.m_mat_Depth.SetTexture("_DepthTexture", this.m_tex_HeightMap);
     }
 }
