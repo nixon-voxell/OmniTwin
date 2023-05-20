@@ -3,10 +3,11 @@
 
 uniform uint _ThreadCount;
 uniform float _Radius;
+uniform uint _Seed;
 
-RWStructuredBuffer<uint> gb_RandStates;
 StructuredBuffer<float> gb_Height;
-AppendStructuredBuffer<uint2> gb_WaterCoords;
+AppendStructuredBuffer<float2> gb_WaterCoords;
+AppendStructuredBuffer<float2> gb_PrevDirection;
 
 #pragma kernel AddWater
 [numthreads(64, 1, 1)]
@@ -14,14 +15,16 @@ void AddWater(uint DTid : SV_DispatchThreadID)
 {
     if (DTid >= _ThreadCount) return;
 
-    Random rand = Random::CreateFromState(gb_RandStates[DTid]);
+    Random rand = Random::CreateFromIndex(DTid + _Seed);
 
     // use polar coordinates to generate random points in a circle
-    // resultant distribution will have more points in the center
+    // resultant distribution will have more points at the center
+    // which is what we need to simulate rain water
     // for a detailed explanation, refer here: https://www.youtube.com/watch?v=4y_nmpv-9lI
     float theta = rand.NextFloat(2.0f * PI);
     float radius = rand.NextFloat(_Radius);
 
     float2 coord = float2(radius * cos(theta), radius * sin(theta));
-    gb_WaterCoords.Append(uint2(coord));
+    gb_WaterCoords.Append(coord);
+    gb_PrevDirection.Append(0.0f);
 }

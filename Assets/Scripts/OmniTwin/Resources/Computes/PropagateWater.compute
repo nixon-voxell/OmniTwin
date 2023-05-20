@@ -1,10 +1,24 @@
-uniform float _Height;
+#include "../HLSL/Mathx.hlsl"
+#include "../HLSL/Random.hlsl"
 
-RWTexture2D<float> tex_Depth;
+uniform uint _ThreadCount;
+uniform uint2 _Dimension;
+uniform float _Height;
+uniform float _WaterBlockHeight;
+
+StructuredBuffer<float> gb_Height;
+StructuredBuffer<uint> gb_WaterHeight;
+StructuredBuffer<float2> gb_WaterCoords;
 
 #pragma kernel PropagateWater
-[numthreads(8, 8, 1)]
-void PropagateWater(uint2 DTid : SV_DispatchThreadID)
+[numthreads(64, 1, 1)]
+void PropagateWater(uint DTid : SV_DispatchThreadID)
 {
-    // tex_Depth[DTid] *= _Height;
+    float2 coord = gb_WaterCoords[DTid];
+    uint flatten_idx = flatten_uint2(uint2(coord), _Dimension);
+
+    float currHeight = gb_Height[flatten_idx];
+    currHeight += float(gb_WaterHeight[flatten_idx]) * _WaterBlockHeight;
+
+    // sample surroundings
 }
