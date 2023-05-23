@@ -3,7 +3,7 @@
 uniform uint _ThreadCount;
 uniform uint2 _Dimension;
 
-globallycoherent RWStructuredBuffer<uint> gb_WaterHeight;
+globallycoherent RWStructuredBuffer<uint> gb_WaterHeights;
 StructuredBuffer<float2> gb_WaterCoords;
 
 #pragma kernel CalculateWaterHeight
@@ -13,5 +13,5 @@ void CalculateWaterHeight(uint DTid : SV_DispatchThreadID)
     if (DTid >= _ThreadCount) return;
 
     uint2 coord = uint2(gb_WaterCoords[DTid]);
-    InterlockedAdd(gb_WaterHeight[flatten_uint2(coord, _Dimension)], 1);
+    InterlockedAdd(gb_WaterHeights[flatten_uint2(coord, _Dimension)], 1);
 }

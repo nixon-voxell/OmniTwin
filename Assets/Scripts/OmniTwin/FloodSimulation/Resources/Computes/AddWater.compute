@@ -26,6 +26,7 @@ void AddWater(uint DTid : SV_DispatchThreadID)
     float radius = rand.NextFloat(_Radius);
 
     float2 coord = float2(radius * cos(theta), radius * sin(theta));
+    coord += _Center;
     gb_WaterCoords.Append(coord);
     // gb_PrevDirection.Append(0.0f);
 }
