@@ -1,31 +1,50 @@
 #include "../HLSL/Mathx.hlsl"
 #include "../HLSL/Random.hlsl"
 
-#define TOP uint2(0, 1)
-#define DOWN uint2(0, -1)
-#define LEFT uint2(-1, 0)
 #define RIGHT uint2(1, 0)
+#define TOP uint2(0, 1)
+#define LEFT uint2(-1, 0)
+#define DOWN uint2(0, -1)
 
 uniform uint _ThreadCount;
 uniform uint2 _Dimension;
 uniform float _Height;
 uniform float _WaterBlockHeight;
+uniform uint _Seed;
 
-StructuredBuffer<float> gb_Height;
+StructuredBuffer<float> gb_Heights;
 StructuredBuffer<uint> gb_WaterHeight;
 StructuredBuffer<float2> gb_WaterCoords;
+
+float get_height(uint2 int_coord)
+{
+    uint flatten_idx = flatten_uint2(int_coord, _Dimension);
+    float height = gb_Heights[flatten_idx];
+    height += float(gb_WaterHeight[flatten_idx]) * _WaterBlockHeight;
+
+    return height;
+}
 
 #pragma kernel PropagateWater
 [numthreads(64, 1, 1)]
 void PropagateWater(uint DTid : SV_DispatchThreadID)
 {
     float2 coord = gb_WaterCoords[DTid];
-    uint flatten_idx = flatten_uint2(uint2(coord), _Dimension);
+    uint2 int_coord = uint2(coord);
+    uint flatten_idx = flatten_uint2(int_coord, _Dimension);
 
     // get current height and move towards lower areas
-    float currHeight = gb_Height[flatten_idx];
-    currHeight += float(gb_WaterHeight[flatten_idx]) * _WaterBlockHeight;
-
+    float currHeight = get_height(int_coord);
     // sample surroundings
-    // float topHeight = gb_Height[flatten_uint2(uint(coord + TOP))]
+    float rightHeight = get_height(int_coord + RIGHT);
+    float topHeight = get_height(int_coord + TOP);
+    // float leftHeight = get_height(int_coord + LEFT);
+    // float downHeight = get_height(int_coord + DOWN);
+
+    float2 dir = 0.0f;
+
+    dir.x = currHeight - rightHeight;
+    dir.y = currHeight - topHeight;
+
+    dir = normalize(dir);
 }

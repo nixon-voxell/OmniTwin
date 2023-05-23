@@ -6,7 +6,7 @@ uniform float _Radius;
 uniform float2 _Center;
 uniform uint _Seed;
 
-StructuredBuffer<float> gb_Height;
+StructuredBuffer<float> gb_Heights;
 AppendStructuredBuffer<float2> gb_WaterCoords;
 // AppendStructuredBuffer<float2> gb_PrevDirection;
 
