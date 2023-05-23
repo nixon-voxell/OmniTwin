@@ -1,6 +1,11 @@
 #include "../HLSL/Mathx.hlsl"
 #include "../HLSL/Random.hlsl"
 
+#define TOP uint2(0, 1)
+#define DOWN uint2(0, -1)
+#define LEFT uint2(-1, 0)
+#define RIGHT uint2(1, 0)
+
 uniform uint _ThreadCount;
 uniform uint2 _Dimension;
 uniform float _Height;
@@ -17,8 +22,10 @@ void PropagateWater(uint DTid : SV_DispatchThreadID)
     float2 coord = gb_WaterCoords[DTid];
     uint flatten_idx = flatten_uint2(uint2(coord), _Dimension);
 
+    // get current height and move towards lower areas
     float currHeight = gb_Height[flatten_idx];
     currHeight += float(gb_WaterHeight[flatten_idx]) * _WaterBlockHeight;
 
     // sample surroundings
+    // float topHeight = gb_Height[flatten_uint2(uint(coord + TOP))]
 }

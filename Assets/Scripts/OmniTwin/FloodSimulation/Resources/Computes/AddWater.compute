@@ -3,11 +3,12 @@
 
 uniform uint _ThreadCount;
 uniform float _Radius;
+uniform float2 _Center;
 uniform uint _Seed;
 
 StructuredBuffer<float> gb_Height;
 AppendStructuredBuffer<float2> gb_WaterCoords;
-AppendStructuredBuffer<float2> gb_PrevDirection;
+// AppendStructuredBuffer<float2> gb_PrevDirection;
 
 #pragma kernel AddWater
 [numthreads(64, 1, 1)]
@@ -26,5 +27,5 @@ void AddWater(uint DTid : SV_DispatchThreadID)
 
     float2 coord = float2(radius * cos(theta), radius * sin(theta));
     gb_WaterCoords.Append(coord);
-    gb_PrevDirection.Append(0.0f);
+    // gb_PrevDirection.Append(0.0f);
 }
