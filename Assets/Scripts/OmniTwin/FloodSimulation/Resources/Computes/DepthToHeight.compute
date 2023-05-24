@@ -1,0 +1,18 @@
+#include "../HLSL/Mathx.hlsl"
+
+uniform uint2 _Dimension;
+uniform float _Height;
+
+Texture2D<float> tex_Depth;
+RWStructuredBuffer<float> gb_Heights;
+
+// takes in a texture with each pixel ranging from 0 - 1
+// and convert them to actual height based on maximum height
+#pragma kernel DepthToHeight
+[numthreads(8, 8, 1)]
+void DepthToHeight(uint2 DTid : SV_DispatchThreadID)
+{
+    if (any(DTid >= _Dimension)) return;
+
+    gb_Heights[flatten_uint2(DTid, _Dimension)] = tex_Depth[DTid] *  _Height;
+}

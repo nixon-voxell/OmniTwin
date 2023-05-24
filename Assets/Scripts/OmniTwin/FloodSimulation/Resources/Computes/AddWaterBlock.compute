@@ -1,0 +1,32 @@
+#include "../HLSL/Random.hlsl"
+#include "../HLSL/Mathx.hlsl"
+
+uniform uint _ThreadCount;
+uniform float _Radius;
+uniform float2 _Center;
+uniform uint _Seed;
+uniform uint _WaterBlockCount;
+
+StructuredBuffer<float> gb_Heights;
+RWStructuredBuffer<float2> gb_WaterCoords;
+
+#pragma kernel AddWaterBlock
+[numthreads(64, 1, 1)]
+void AddWaterBlock(uint DTid : SV_DispatchThreadID)
+{
+    if (DTid >= _ThreadCount) return;
+
+    Random rand = Random::CreateFromIndex(DTid + _Seed);
+
+    // use polar coordinates to generate random points in a circle
+    // resultant distribution will have more points at the center
+    // which is what we need to simulate rain water
+    // for a detailed explanation, refer here: https://www.youtube.com/watch?v=4y_nmpv-9lI
+    float theta = rand.NextFloat(2.0f * PI);
+    float radius = rand.NextFloat(_Radius);
+
+    float2 coord = float2(cos(theta), sin(theta)) * radius;
+    coord += _Center;
+    gb_WaterCoords[DTid + _WaterBlockCount] = coord;
+    // gb_WaterCoords.Append(coord);
+}
