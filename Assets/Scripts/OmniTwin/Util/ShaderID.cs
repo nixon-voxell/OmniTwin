@@ -6,6 +6,8 @@ public static class ShaderID
     public static readonly int _Dimension = Shader.PropertyToID("_Dimension");
     public static readonly int _Radius = Shader.PropertyToID("_Radius");
     public static readonly int _Height = Shader.PropertyToID("_Height");
+    public static readonly int _WaterBlockHeight = Shader.PropertyToID("_WaterBlockHeight");
+    public static readonly int _WaterBlockCount = Shader.PropertyToID("_WaterBlockCount");
     public static readonly int _Center = Shader.PropertyToID("_Center");
     public static readonly int _Seed = Shader.PropertyToID("_Seed");
     public static readonly int _RandomStrength = Shader.PropertyToID("_RandomStrength");

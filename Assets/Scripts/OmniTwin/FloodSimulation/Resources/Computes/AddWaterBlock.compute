@@ -5,14 +5,14 @@ uniform uint _ThreadCount;
 uniform float _Radius;
 uniform float2 _Center;
 uniform uint _Seed;
+uniform uint _WaterBlockCount;
 
 StructuredBuffer<float> gb_Heights;
-AppendStructuredBuffer<float2> gb_WaterCoords;
-// AppendStructuredBuffer<float2> gb_PrevDirection;
+RWStructuredBuffer<float2> gb_WaterCoords;
 
-#pragma kernel AddWater
+#pragma kernel AddWaterBlock
 [numthreads(64, 1, 1)]
-void AddWater(uint DTid : SV_DispatchThreadID)
+void AddWaterBlock(uint DTid : SV_DispatchThreadID)
 {
     if (DTid >= _ThreadCount) return;
 
@@ -25,8 +25,8 @@ void AddWater(uint DTid : SV_DispatchThreadID)
     float theta = rand.NextFloat(2.0f * PI);
     float radius = rand.NextFloat(_Radius);
 
-    float2 coord = float2(radius * cos(theta), radius * sin(theta));
+    float2 coord = float2(cos(theta), sin(theta)) * radius;
     coord += _Center;
-    gb_WaterCoords.Append(coord);
-    // gb_PrevDirection.Append(0.0f);
+    gb_WaterCoords[DTid + _WaterBlockCount] = coord;
+    // gb_WaterCoords.Append(coord);
 }

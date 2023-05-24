@@ -1,8 +1,9 @@
 #include "../HLSL/Mathx.hlsl"
 
 uniform uint2 _Dimension;
+uniform float _WaterBlockHeight;
 
-RWTexture2D<uint> tex_WaterHeight;
+RWTexture2D<float> tex_WaterHeight;
 StructuredBuffer<uint> gb_WaterHeights;
 
 #pragma kernel WaterHeightToTexture
@@ -11,5 +12,6 @@ void WaterHeightToTexture(uint2 DTid : SV_DispatchThreadID)
 {
     if (any(DTid >= _Dimension)) return;
 
-    tex_WaterHeight[DTid] = gb_WaterHeights[flatten_uint2(DTid, _Dimension)];
+    tex_WaterHeight[DTid] = float(gb_WaterHeights[flatten_uint2(DTid, _Dimension)]) * _WaterBlockHeight;
+    // tex_WaterHeight[DTid] = 1.0f;
 }

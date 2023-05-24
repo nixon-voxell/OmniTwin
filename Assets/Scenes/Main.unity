@@ -1113,17 +1113,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Size:
-    x: 256
-    y: 256
-  m_MaxWaterCount: 1000
-  m_AddWaterCount: 4
-  m_Radius: 5
+    x: 1000
+    y: 1000
+  m_MaxWaterBlockCount: 1000000
+  m_WaterBlockCount: 0
+  m_AddBlockWaterCount: 10
+  m_WaterBlockHeight: 1
+  m_Radius: 100
   m_Center:
-    x: 0
-    y: 0
-  m_WaterCount: 0
+    x: 500
+    y: 500
   m_TargetCamera: {fileID: 1274426495}
-  m_mat_Height: {fileID: 0}
+  m_mat_Depth: {fileID: 2100000, guid: da77b0ef7a531024686dd346e3737d6c, type: 2}
   m_mat_WaterHeight: {fileID: 2100000, guid: d008c516eb85f924b8062da6f3bf43f9, type: 2}
 --- !u!1 &889424121
 GameObject:
@@ -1174,7 +1175,6 @@ GameObject:
   - component: {fileID: 918940952}
   - component: {fileID: 918940951}
   - component: {fileID: 918940950}
-  - component: {fileID: 918940953}
   m_Layer: 0
   m_Name: DepthTest
   m_TagString: Untagged
@@ -1202,7 +1202,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: da77b0ef7a531024686dd346e3737d6c, type: 2}
+  - {fileID: 2100000, guid: d008c516eb85f924b8062da6f3bf43f9, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1239,32 +1239,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 918940948}
-  m_LocalRotation: {x: 0.00000019198342, y: -0.7071068, z: 0.7071068, w: -0.00000019170693}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 2000, y: 2000, z: 2000}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children: []
-  m_Father: {fileID: 1274426489}
-  m_RootOrder: -1
-  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 180}
---- !u!114 &918940953
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 918940948}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f79cb7f13f37a4c47a5f36d9ddd73dc9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Size:
-    x: 256
-    y: 256
-  m_TargetCamera: {fileID: 1274426495}
-  m_mat_Depth: {fileID: 2100000, guid: da77b0ef7a531024686dd346e3737d6c, type: 2}
-  m_tex_HeightMap: {fileID: 0}
+  m_Father: {fileID: 0}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1099965394
 GameObject:
   m_ObjectHideFlags: 0
@@ -1511,8 +1493,7 @@ Transform:
   m_LocalPosition: {x: -3310.331, y: 795.89105, z: -2401.5386}
   m_LocalScale: {x: 1, y: 1.0000075, z: 1.0000075}
   m_ConstrainProportionsScale: 1
-  m_Children:
-  - {fileID: 918940952}
+  m_Children: []
   m_Father: {fileID: 1856336270}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}

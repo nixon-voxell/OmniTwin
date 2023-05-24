@@ -5,7 +5,7 @@ using Unity.Mathematics;
 public static class FloodSimulation
 {
     public static ComputeShader cs_DepthToHeight { get; private set; }
-    public static ComputeShader cs_AddWater { get; private set; }
+    public static ComputeShader cs_AddWaterBlock { get; private set; }
     public static ComputeShader cs_CalculateWaterHeight { get; private set; }
     public static ComputeShader cs_WaterHeightToTexture { get; private set; }
     public static ComputeShader cs_PropagateWater { get; private set; }
@@ -13,7 +13,7 @@ public static class FloodSimulation
     public static void Initialize()
     {
         cs_DepthToHeight = Resources.Load<ComputeShader>("Computes/DepthToHeight");
-        cs_AddWater = Resources.Load<ComputeShader>("Computes/AddWater");
+        cs_AddWaterBlock = Resources.Load<ComputeShader>("Computes/AddWaterBlock");
         cs_CalculateWaterHeight = Resources.Load<ComputeShader>("Computes/CalculateWaterHeight");
         cs_WaterHeightToTexture = Resources.Load<ComputeShader>("Computes/WaterHeightToTexture");
         cs_PropagateWater = Resources.Load<ComputeShader>("Computes/PropagateWater");
@@ -43,27 +43,28 @@ public static class FloodSimulation
         cmd.EndSample("DepthToHeight");
     }
 
-    public static void Compute_AddWater(
+    public static void Compute_AddWaterBlock(
         CommandBuffer cmd,
-        int count, float radius, float2 center, uint seed,
+        uint addWaterBlockCount, uint waterBlockCount, float radius, float2 center, uint seed,
         FloodBuffer floodBuffer
     ) {
-        cmd.BeginSample("AddWater");
+        cmd.BeginSample("AddWaterBlock");
 
-        cmd.SetComputeIntParam(cs_AddWater, ShaderID._ThreadCount, count);
-        cmd.SetComputeFloatParam(cs_AddWater, ShaderID._Radius, radius);
-        cmd.SetComputeVectorParam(cs_AddWater, ShaderID._Center, new Vector4(center.x, center.y, 0.0f, 0.0f));
-        cmd.SetComputeIntParam(cs_AddWater, ShaderID._Seed, (int)seed);
+        cmd.SetComputeIntParam(cs_AddWaterBlock, ShaderID._ThreadCount, (int)addWaterBlockCount);
+        cmd.SetComputeFloatParam(cs_AddWaterBlock, ShaderID._Radius, radius);
+        cmd.SetComputeFloatParams(cs_AddWaterBlock, ShaderID._Center, center.x, center.y);
+        cmd.SetComputeIntParam(cs_AddWaterBlock, ShaderID._Seed, (int)seed);
+        cmd.SetComputeIntParam(cs_AddWaterBlock, ShaderID._WaterBlockCount, (int)waterBlockCount);
 
-        cmd.SetComputeBufferParam(cs_AddWater, 0, ShaderID.gb_Heights, floodBuffer.gb_Heights);
-        cmd.SetComputeBufferParam(cs_AddWater, 0, ShaderID.gb_WaterCoords, floodBuffer.gb_WaterCoords);
+        cmd.SetComputeBufferParam(cs_AddWaterBlock, 0, ShaderID.gb_Heights, floodBuffer.gb_Heights);
+        cmd.SetComputeBufferParam(cs_AddWaterBlock, 0, ShaderID.gb_WaterCoords, floodBuffer.gb_WaterCoords);
 
         cmd.DispatchCompute(
-            cs_AddWater, 0,
-            mathx.batch_count(count, 64), 1, 1
+            cs_AddWaterBlock, 0,
+            (int)mathx.batch_count(addWaterBlockCount, 64), 1, 1
         );
 
-        cmd.EndSample("AddWater");
+        cmd.EndSample("AddWaterBlock");
     }
 
     public static void Compute_CalculateWaterHeight(CommandBuffer cmd, int count, FloodBuffer floodBuffer)
@@ -80,20 +81,20 @@ public static class FloodSimulation
 
         cmd.DispatchCompute(
             cs_CalculateWaterHeight, 0,
-            mathx.batch_count(width, 8),
-            mathx.batch_count(height, 8), 1
+            mathx.batch_count(count, 64), 1, 1
         );
 
         cmd.EndSample("CalculateWaterHeight");
     }
 
-    public static void Compute_WaterHeightToTexture(CommandBuffer cmd, FloodBuffer floodBuffer)
+    public static void Compute_WaterHeightToTexture(CommandBuffer cmd, float waterBlockHeight, FloodBuffer floodBuffer)
     {
         cmd.BeginSample("WaterHeightToTexture");
 
         int width = floodBuffer.tex_WaterHeight.width;
         int height = floodBuffer.tex_WaterHeight.height;
         cmd.SetComputeIntParams(cs_WaterHeightToTexture, ShaderID._Dimension, width, height);
+        cmd.SetComputeFloatParam(cs_WaterHeightToTexture, ShaderID._WaterBlockHeight, waterBlockHeight);
 
         cmd.SetComputeBufferParam(cs_WaterHeightToTexture, 0, ShaderID.gb_WaterHeights, floodBuffer.gb_WaterHeights);
         cmd.SetComputeTextureParam(cs_WaterHeightToTexture, 0, ShaderID.tex_WaterHeight, floodBuffer.tex_WaterHeight);

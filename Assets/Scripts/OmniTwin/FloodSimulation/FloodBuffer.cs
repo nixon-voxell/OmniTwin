@@ -19,18 +19,14 @@ public class FloodBuffer : System.IDisposable
         this.tex_Depth = new RenderTexture(_size.x, _size.y, 32, RenderTextureFormat.Depth);
         this.tex_Depth.Create();
         // create water height int render texture
-        this.tex_WaterHeight = new RenderTexture(_size.x, _size.y, 0, RenderTextureFormat.RInt, RenderTextureReadWrite.Linear);
+        this.tex_WaterHeight = new RenderTexture(_size.x, _size.y, 0, RenderTextureFormat.RFloat, RenderTextureReadWrite.Linear);
         this.tex_WaterHeight.enableRandomWrite = true;
+        this.tex_WaterHeight.filterMode = FilterMode.Point;
         this.tex_WaterHeight.Create();
 
         this.gb_Heights = new GraphicsBuffer(GraphicsBuffer.Target.Structured, count, UnsafeUtility.SizeOf<float>());
-        this.gb_WaterCoords = new GraphicsBuffer(
-            GraphicsBuffer.Target.Structured | GraphicsBuffer.Target.Append,
-            (int)maxWaterCount, UnsafeUtility.SizeOf<float2>()
-        );
-        this.gb_WaterHeights = new GraphicsBuffer(
-            GraphicsBuffer.Target.Structured, count, UnsafeUtility.SizeOf<uint>()
-        );
+        this.gb_WaterCoords = new GraphicsBuffer(GraphicsBuffer.Target.Structured, (int)maxWaterCount, UnsafeUtility.SizeOf<float2>());
+        this.gb_WaterHeights = new GraphicsBuffer(GraphicsBuffer.Target.Structured, count, UnsafeUtility.SizeOf<uint>());
     }
 
     public void Dispose()
