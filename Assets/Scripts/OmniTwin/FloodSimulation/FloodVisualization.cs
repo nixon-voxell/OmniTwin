@@ -7,6 +7,7 @@ public class FloodVisualization : MonoBehaviour
 {
     [Tooltip("Resolution of flood simulation.")]
     [SerializeField] private uint2 m_Size;
+    [SerializeField] private uint m_PropagateSteps;
 
     [Header("Water")]
     [Tooltip("Maximum number of water blocks.")]
@@ -31,6 +32,7 @@ public class FloodVisualization : MonoBehaviour
 
     [SerializeField] private Material m_mat_Depth;
     [SerializeField] private Material m_mat_WaterHeight;
+    [SerializeField] private Material m_mat_Water;
 
     private FloodBuffer m_FloodBuffer;
 
@@ -61,7 +63,7 @@ public class FloodVisualization : MonoBehaviour
 
         if (this.m_WaterBlockCount <= this.m_MaxWaterBlockCount - this.m_AddBlockWaterCount)
         {
-            if (m_AddBlockWaterCount > 0)
+            if (this.m_AddBlockWaterCount > 0)
             {
                 FloodSimulation.Compute_AddWaterBlock(
                     cmd,
@@ -73,21 +75,30 @@ public class FloodVisualization : MonoBehaviour
             }
         }
 
-        FloodSimulation.Compute_CalculateWaterHeight(cmd, this.m_WaterBlockCount, this.m_FloodBuffer);
+        if (this.m_WaterBlockCount > 0)
+        {
+            FloodSimulation.Compute_CalculateWaterHeight(cmd, this.m_WaterBlockCount, this.m_FloodBuffer);
 
-        FloodSimulation.Compute_WaterHeightToTexture(cmd, this.m_WaterBlockHeight, this.m_FloodBuffer);
+            FloodSimulation.Compute_WaterHeightToTexture(cmd, this.m_WaterBlockHeight, this.m_FloodBuffer);
 
-        FloodSimulation.Compute_PropagateWater(
-            cmd,
-            this.m_WaterBlockCount, this.m_WaterBlockHeight,
-            this.m_PropagateSpeed, this.m_RandomStrength, seed + 1,
-            this.m_FloodBuffer
-        );
+            for (uint p = 0; p < this.m_PropagateSteps; p++)
+            {
+                FloodSimulation.Compute_PropagateWater(
+                    cmd,
+                    this.m_WaterBlockCount, this.m_WaterBlockHeight,
+                    this.m_PropagateSpeed, this.m_RandomStrength, seed + 1,
+                    this.m_FloodBuffer
+                );
+            }
+        }
 
         Graphics.ExecuteCommandBuffer(cmd);
 
-        this.m_mat_Depth.SetTexture("tex_Depth", this.m_FloodBuffer.tex_Depth);
-        this.m_mat_WaterHeight.SetTexture("tex_WaterHeight", this.m_FloodBuffer.tex_WaterHeight);
+        this.m_mat_Depth.SetTexture(ShaderID.tex_Depth, this.m_FloodBuffer.tex_Depth);
+        this.m_mat_WaterHeight.SetTexture(ShaderID.tex_WaterHeight, this.m_FloodBuffer.tex_WaterHeight);
+
+        // this.m_mat_Water.SetTexture(ShaderID.tex_Depth, this.m_FloodBuffer.tex_Depth);
+        // this.m_mat_Water.SetTexture(ShaderID.tex_WaterHeight, this.m_FloodBuffer.tex_WaterHeight);
     }
 
     private void OnDestroy()

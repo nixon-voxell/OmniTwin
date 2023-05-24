@@ -42,13 +42,13 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _MaxWaterHeight: 50
+    - _MaxWaterHeight: 100
     - _QueueControl: 0
     - _QueueOffset: 0
     - _WaterBlockHeight: 0.01
     m_Colors:
-    - _MaxWaterColor: {r: 0, g: 0.15852594, b: 1, a: 1}
-    - _MinWaterColor: {r: 0, g: 0.78752947, b: 1, a: 0.5019608}
+    - _MaxWaterColor: {r: 1, g: 0, b: 0.16137215, a: 1}
+    - _MinWaterColor: {r: 0, g: 0.78752947, b: 1, a: 1}
   m_BuildTextureStacks: []
 --- !u!114 &7954813758309070524
 MonoBehaviour:
