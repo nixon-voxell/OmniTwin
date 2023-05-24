@@ -651,7 +651,7 @@
     "m_RefNameGeneratedByDisplayName": "tex_Depth",
     "m_DefaultReferenceName": "_tex_Depth",
     "m_OverrideReferenceName": "tex_Depth",
-    "m_GeneratePropertyBlock": false,
+    "m_GeneratePropertyBlock": true,
     "m_UseCustomSlotLabel": false,
     "m_CustomSlotLabel": "",
     "m_DismissedVersion": 0,

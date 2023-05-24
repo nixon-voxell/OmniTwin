@@ -17,6 +17,7 @@ public class FloodBuffer : System.IDisposable
 
         // create depth only render texture
         this.tex_Depth = new RenderTexture(_size.x, _size.y, 32, RenderTextureFormat.Depth);
+        this.tex_Depth.filterMode = FilterMode.Point;
         this.tex_Depth.Create();
         // create water height int render texture
         this.tex_WaterHeight = new RenderTexture(_size.x, _size.y, 0, RenderTextureFormat.RFloat, RenderTextureReadWrite.Linear);

@@ -1,0 +1,14 @@
+uniform uint _ThreadCount;
+uniform uint _Start;
+uniform int _Number;
+
+RWStructuredBuffer<int> gb_Array;
+
+#pragma kernel IntSet
+[numthreads(64, 1, 1)]
+void IntSet(uint DTid : SV_DISPATCHTHREADID)
+{
+    if (DTid >= _ThreadCount) return;
+
+    gb_Array[DTid + _Start] = _Number;
+}

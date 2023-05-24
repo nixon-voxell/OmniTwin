@@ -4,6 +4,7 @@ using Unity.Mathematics;
 
 public static class FloodSimulation
 {
+    public static ComputeShader cs_IntSet { get; private set; }
     public static ComputeShader cs_DepthToHeight { get; private set; }
     public static ComputeShader cs_AddWaterBlock { get; private set; }
     public static ComputeShader cs_CalculateWaterHeight { get; private set; }
@@ -12,11 +13,37 @@ public static class FloodSimulation
 
     public static void Initialize()
     {
+        cs_IntSet = Resources.Load<ComputeShader>("Computes/IntSet");
         cs_DepthToHeight = Resources.Load<ComputeShader>("Computes/DepthToHeight");
         cs_AddWaterBlock = Resources.Load<ComputeShader>("Computes/AddWaterBlock");
         cs_CalculateWaterHeight = Resources.Load<ComputeShader>("Computes/CalculateWaterHeight");
         cs_WaterHeightToTexture = Resources.Load<ComputeShader>("Computes/WaterHeightToTexture");
         cs_PropagateWater = Resources.Load<ComputeShader>("Computes/PropagateWater");
+    }
+
+    /// <summary>Set a range of integers in the buffer to a number.</summary>
+    /// <param name="start">Starting index of the buffer to set.</param>
+    /// <param name="length">Number of integers to set.</param>
+    public static void Compute_IntSet(
+        CommandBuffer cmd,
+        GraphicsBuffer gb_array,
+        int number, int start, int length
+    ) {
+        cmd.BeginSample("IntSet");
+
+        int threadCount = length;
+        cmd.SetComputeIntParam(cs_IntSet, ShaderID._ThreadCount, threadCount);
+        cmd.SetComputeIntParam(cs_IntSet, ShaderID._Start, start);
+        cmd.SetComputeIntParam(cs_IntSet, ShaderID._Number, number);
+
+        cmd.SetComputeBufferParam(cs_IntSet, 0, ShaderID.gb_Array, gb_array);
+
+        cmd.DispatchCompute(
+            cs_IntSet, 0,
+            mathx.batch_count(threadCount, 64), 1, 1
+        );
+
+        cmd.EndSample("IntSet");
     }
 
     public static void Compute_DepthToHeight(
@@ -67,13 +94,15 @@ public static class FloodSimulation
         cmd.EndSample("AddWaterBlock");
     }
 
-    public static void Compute_CalculateWaterHeight(CommandBuffer cmd, int count, FloodBuffer floodBuffer)
+    public static void Compute_CalculateWaterHeight(CommandBuffer cmd, uint waterBlockCount, FloodBuffer floodBuffer)
     {
         cmd.BeginSample("CalculateWaterHeight");
 
+        Compute_IntSet(cmd, floodBuffer.gb_WaterHeights, 0, 0, floodBuffer.gb_WaterHeights.count);
+
         int width = floodBuffer.tex_WaterHeight.width;
         int height = floodBuffer.tex_WaterHeight.height;
-        cmd.SetComputeIntParam(cs_CalculateWaterHeight, ShaderID._ThreadCount, count);
+        cmd.SetComputeIntParam(cs_CalculateWaterHeight, ShaderID._ThreadCount, (int)waterBlockCount);
         cmd.SetComputeIntParams(cs_CalculateWaterHeight, ShaderID._Dimension, width, height);
 
         cmd.SetComputeBufferParam(cs_CalculateWaterHeight, 0, ShaderID.gb_WaterHeights, floodBuffer.gb_WaterHeights);
@@ -81,7 +110,7 @@ public static class FloodSimulation
 
         cmd.DispatchCompute(
             cs_CalculateWaterHeight, 0,
-            mathx.batch_count(count, 64), 1, 1
+            (int)mathx.batch_count(waterBlockCount, 64), 1, 1
         );
 
         cmd.EndSample("CalculateWaterHeight");
@@ -106,6 +135,34 @@ public static class FloodSimulation
         );
 
         cmd.EndSample("WaterHeightToTexture");
+    }
+
+    public static void Compute_PropagateWater(
+        CommandBuffer cmd,
+        uint waterBlockCount, float waterBlockHeight, float propagateSpeed, float randomStrength, uint seed,
+        FloodBuffer floodBuffer
+    ) {
+        cmd.BeginSample("PropagateWater");
+
+        int width = floodBuffer.tex_WaterHeight.width;
+        int height = floodBuffer.tex_WaterHeight.height;
+        cmd.SetComputeIntParam(cs_PropagateWater, ShaderID._ThreadCount, (int)waterBlockCount);
+        cmd.SetComputeIntParams(cs_PropagateWater, ShaderID._Dimension, width, height);
+        cmd.SetComputeFloatParam(cs_PropagateWater, ShaderID._WaterBlockHeight, waterBlockHeight);
+        cmd.SetComputeFloatParam(cs_PropagateWater, ShaderID._PropagateSpeed, propagateSpeed);
+        cmd.SetComputeFloatParam(cs_PropagateWater, ShaderID._RandomStrength, randomStrength);
+        cmd.SetComputeIntParam(cs_PropagateWater, ShaderID._Seed, (int)seed);
+
+        cmd.SetComputeBufferParam(cs_PropagateWater, 0, ShaderID.gb_Heights, floodBuffer.gb_Heights);
+        cmd.SetComputeBufferParam(cs_PropagateWater, 0, ShaderID.gb_WaterHeights, floodBuffer.gb_WaterHeights);
+        cmd.SetComputeBufferParam(cs_PropagateWater, 0, ShaderID.gb_WaterCoords, floodBuffer.gb_WaterCoords);
+
+        cmd.DispatchCompute(
+            cs_PropagateWater, 0,
+            (int)mathx.batch_count(waterBlockCount, 64), 1, 1
+        );
+
+        cmd.EndSample("PropagateWater");
     }
 
     /// <summary>Setup camera to render depth.</summary>
