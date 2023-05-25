@@ -14,12 +14,22 @@ uniform uint _Seed;
 StructuredBuffer<float> gb_Heights;
 StructuredBuffer<uint> gb_WaterHeights;
 RWStructuredBuffer<float2> gb_WaterCoords;
+StructuredBuffer<uint> gb_WaterBlockHeights;
 
 float get_height(uint2 int_coord)
 {
     uint flatten_idx = flatten_uint2(int_coord, _Dimension);
     float height = gb_Heights[flatten_idx];
     height += float(gb_WaterHeights[flatten_idx]) * _WaterBlockHeight;
+
+    return height;
+}
+
+float get_blockheight(uint2 int_coord)
+{
+    uint flatten_idx = flatten_uint2(int_coord, _Dimension);
+    float height = gb_Heights[flatten_idx];
+    height += float(gb_WaterBlockHeights[flatten_idx] - 1) * _WaterBlockHeight;
 
     return height;
 }
@@ -34,7 +44,7 @@ void PropagateWater(uint DTid : SV_DispatchThreadID)
     uint2 int_coord = uint2(coord);
 
     // get current height and move towards lower areas
-    float currHeight = get_height(int_coord);
+    float currHeight = get_blockheight(int_coord);
     // sample surroundings
     float rightHeight = get_height(int_coord + RIGHT);
     float topHeight = get_height(int_coord + TOP);

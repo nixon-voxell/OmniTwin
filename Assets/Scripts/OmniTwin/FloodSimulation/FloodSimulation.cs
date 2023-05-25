@@ -107,6 +107,7 @@ public static class FloodSimulation
 
         cmd.SetComputeBufferParam(cs_CalculateWaterHeight, 0, ShaderID.gb_WaterHeights, floodBuffer.gb_WaterHeights);
         cmd.SetComputeBufferParam(cs_CalculateWaterHeight, 0, ShaderID.gb_WaterCoords, floodBuffer.gb_WaterCoords);
+        cmd.SetComputeBufferParam(cs_CalculateWaterHeight, 0, ShaderID.gb_WaterBlockHeights, floodBuffer.gb_WaterBlockHeights);
 
         cmd.DispatchCompute(
             cs_CalculateWaterHeight, 0,
@@ -156,6 +157,7 @@ public static class FloodSimulation
         cmd.SetComputeBufferParam(cs_PropagateWater, 0, ShaderID.gb_Heights, floodBuffer.gb_Heights);
         cmd.SetComputeBufferParam(cs_PropagateWater, 0, ShaderID.gb_WaterHeights, floodBuffer.gb_WaterHeights);
         cmd.SetComputeBufferParam(cs_PropagateWater, 0, ShaderID.gb_WaterCoords, floodBuffer.gb_WaterCoords);
+        cmd.SetComputeBufferParam(cs_PropagateWater, 0, ShaderID.gb_WaterBlockHeights, floodBuffer.gb_WaterBlockHeights);
 
         cmd.DispatchCompute(
             cs_PropagateWater, 0,

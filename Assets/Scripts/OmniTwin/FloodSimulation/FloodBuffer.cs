@@ -8,6 +8,7 @@ public class FloodBuffer : System.IDisposable
     public RenderTexture tex_WaterHeight;
     public GraphicsBuffer gb_Heights;
     public GraphicsBuffer gb_WaterCoords;
+    public GraphicsBuffer gb_WaterBlockHeights;
     public GraphicsBuffer gb_WaterHeights;
 
     public FloodBuffer(uint2 size, uint maxWaterCount)
@@ -27,6 +28,7 @@ public class FloodBuffer : System.IDisposable
 
         this.gb_Heights = new GraphicsBuffer(GraphicsBuffer.Target.Structured, count, UnsafeUtility.SizeOf<float>());
         this.gb_WaterCoords = new GraphicsBuffer(GraphicsBuffer.Target.Structured, (int)maxWaterCount, UnsafeUtility.SizeOf<float2>());
+        this.gb_WaterBlockHeights = new GraphicsBuffer(GraphicsBuffer.Target.Structured, (int)maxWaterCount, UnsafeUtility.SizeOf<uint>());
         this.gb_WaterHeights = new GraphicsBuffer(GraphicsBuffer.Target.Structured, count, UnsafeUtility.SizeOf<uint>());
     }
 
@@ -36,6 +38,7 @@ public class FloodBuffer : System.IDisposable
         this.tex_WaterHeight.Release();
         this.gb_Heights.Dispose();
         this.gb_WaterCoords.Dispose();
+        this.gb_WaterBlockHeights.Dispose();
         this.gb_WaterHeights.Dispose();
     }
 }

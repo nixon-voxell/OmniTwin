@@ -20,5 +20,6 @@ public static class ShaderID
     public static readonly int gb_Array = Shader.PropertyToID("gb_Array");
     public static readonly int gb_Heights = Shader.PropertyToID("gb_Heights");
     public static readonly int gb_WaterCoords = Shader.PropertyToID("gb_WaterCoords");
+    public static readonly int gb_WaterBlockHeights = Shader.PropertyToID("gb_WaterBlockHeights");
     public static readonly int gb_WaterHeights = Shader.PropertyToID("gb_WaterHeights");
 }

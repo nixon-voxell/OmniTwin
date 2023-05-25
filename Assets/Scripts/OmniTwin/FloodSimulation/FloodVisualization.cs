@@ -1,7 +1,6 @@
 using UnityEngine;
 using UnityEngine.Rendering;
 using Unity.Mathematics;
-using Voxell.Util;
 
 public class FloodVisualization : MonoBehaviour
 {
@@ -12,8 +11,8 @@ public class FloodVisualization : MonoBehaviour
     [Header("Water")]
     [Tooltip("Maximum number of water blocks.")]
     [SerializeField] private uint m_MaxWaterBlockCount;
-    [Tooltip("Current number of water blocks.")]
-    [SerializeField, InspectOnly] private uint m_WaterBlockCount;
+    // current number of water blocks
+    private uint m_WaterBlockCount;
 
     [Tooltip("Nunber of water blocks to add per frame.")]
     [SerializeField] private uint m_AddBlockWaterCount;
