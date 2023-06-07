@@ -3,14 +3,14 @@ using UnityEngine.UIElements;
 
 namespace OmniTwin.UI
 {
-    public class DetectionImageUI : MonoBehaviour
+    public class FloodVisualizationUI : MonoBehaviour
     {
         [SerializeField] private UIDocument m_Document;
 
         private VisualElement m_Root;
-        private VisualElement m_DetectionImg;
+        private VisualElement m_VisualizationImg;
 
-        public VisualElement DetectionImg => this.m_DetectionImg;
+        public VisualElement VisualizationImg => this.m_VisualizationImg;
 
         public void SetDocumentVisible(bool active)
         {
@@ -19,10 +19,10 @@ namespace OmniTwin.UI
 
         private void Start()
         {
-            UIManager.Instance.DetectionImageUI = this;
+            UIManager.Instance.FloodVisualizationUI = this;
 
             this.m_Root = this.m_Document.rootVisualElement;
-            this.m_DetectionImg = this.m_Root.Q<VisualElement>("detection-img");
+            this.m_VisualizationImg = this.m_Root.Q<VisualElement>("visualization-img");
 
             // set visibility to false by default
             this.SetDocumentVisible(false);

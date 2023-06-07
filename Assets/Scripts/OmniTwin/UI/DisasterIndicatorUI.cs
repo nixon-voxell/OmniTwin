@@ -2,74 +2,76 @@ using UnityEngine;
 using UnityEngine.UIElements;
 using Unity.Mathematics;
 using CesiumForUnity;
-using OmniTwin;
 
-[RequireComponent(typeof(UIDocument), typeof(CesiumGlobeAnchor))]
-public class DisasterIndicatorUI : MonoBehaviour
+namespace OmniTwin.UI
 {
-    [SerializeField] private UIDocument m_Document;
-    [SerializeField] private CesiumGlobeAnchor m_Anchor;
-    [SerializeField] private double3 m_CamOffset;
-    [SerializeField] private float3 m_CamEuler;
-
-    private VisualElement m_Root;
-
-    private VisualElement m_Indicator;
-    private Button m_DisasterBtn;
-    private DisasterData m_DisasterData;
-    private Vector3 m_SphereScale;
-
-    private void OnEnable()
+    [RequireComponent(typeof(UIDocument), typeof(CesiumGlobeAnchor))]
+    public class DisasterIndicatorUI : MonoBehaviour
     {
-        if (this.m_DisasterData.DetectionImageURL != null)
+        [SerializeField] private UIDocument m_Document;
+        [SerializeField] private CesiumGlobeAnchor m_Anchor;
+        [SerializeField] private double3 m_CamOffset;
+        [SerializeField] private float3 m_CamEuler;
+
+        private VisualElement m_Root;
+
+        private VisualElement m_Indicator;
+        private Button m_DisasterBtn;
+        private DisasterData m_DisasterData;
+        private Vector3 m_SphereScale;
+
+        private void OnEnable()
         {
-            this.Init(this.m_DisasterData);
+            if (this.m_DisasterData.DetectionImageURL != null)
+            {
+                this.Init(this.m_DisasterData);
+            }
         }
-    }
 
-    public void Init(DisasterData disasterData)
-    {
-        this.m_DisasterData = disasterData;
-        this.m_Root = this.m_Document.rootVisualElement;
-
-        this.m_Indicator = this.m_Root.Q<VisualElement>("indicator");
-        this.m_DisasterBtn = this.m_Root.Q<Button>("disaster-btn");
-
-        this.m_DisasterBtn.clicked += () =>
+        public void Init(DisasterData disasterData)
         {
-            UIManager manager = UIManager.Instance;
-            manager.Indicators.SetActive(false);
+            this.m_DisasterData = disasterData;
+            this.m_Root = this.m_Document.rootVisualElement;
 
-            // offset geo coordinate
-            CesiumGlobeAnchor anchor = OmniWorld.HybridDynCameraMono.CesiumGlobeAnchor;
-            double3 targetGeoCoord = anchor.longitudeLatitudeHeight;
-            targetGeoCoord.xy += this.m_CamOffset.xy;
-            targetGeoCoord.z = this.m_CamOffset.z;
+            this.m_Indicator = this.m_Root.Q<VisualElement>("indicator");
+            this.m_DisasterBtn = this.m_Root.Q<Button>("disaster-btn");
 
-            manager.MainUI.MoveCameraToDisaster(disasterData, targetGeoCoord, this.m_CamEuler);
-            manager.MainUI.LoadDetectionImage(disasterData);
-        };
+            this.m_DisasterBtn.clicked += () =>
+            {
+                UIManager manager = UIManager.Instance;
+                manager.Indicators.SetActive(false);
 
-        this.m_Anchor.longitudeLatitudeHeight = new double3(
-            this.m_DisasterData.Longitude, this.m_DisasterData.Latitude, 0.0d
-        );
-    }
+                // offset geo coordinate
+                CesiumGlobeAnchor anchor = OmniWorld.HybridDynCameraMono.CesiumGlobeAnchor;
+                double3 targetGeoCoord = anchor.longitudeLatitudeHeight;
+                targetGeoCoord.xy += this.m_CamOffset.xy;
+                targetGeoCoord.z = this.m_CamOffset.z;
 
-    public void SetIcon(Texture2D icon)
-    {
-        this.m_DisasterBtn.style.backgroundImage = icon;
-    }
+                manager.MainUI.MoveCameraToDisaster(disasterData, targetGeoCoord, this.m_CamEuler);
+                manager.MainUI.LoadDetectionImage(disasterData);
+            };
 
-    private void LateUpdate()
-    {
-        // if (Camera.main == null) return;
+            this.m_Anchor.longitudeLatitudeHeight = new double3(
+                this.m_DisasterData.Longitude, this.m_DisasterData.Latitude, 0.0d
+            );
+        }
 
-        Vector2 panelPos;
-        panelPos = RuntimePanelUtils.CameraTransformWorldToPanel(this.m_Root.panel, this.transform.position, Camera.main);
+        public void SetIcon(Texture2D icon)
+        {
+            this.m_DisasterBtn.style.backgroundImage = icon;
+        }
 
-        float width = this.m_Indicator.contentRect.width;
-        float height = this.m_Indicator.contentRect.height;
+        private void LateUpdate()
+        {
+            // if (Camera.main == null) return;
 
-        this.m_Indicator.style.translate = new StyleTranslate(new Translate(panelPos.x - width * 0.5f, panelPos.y - height * 0.5f));
+            Vector2 panelPos;
+            panelPos = RuntimePanelUtils.CameraTransformWorldToPanel(this.m_Root.panel, this.transform.position, Camera.main);
+
+            float width = this.m_Indicator.contentRect.width;
+            float height = this.m_Indicator.contentRect.height;
+
+            this.m_Indicator.style.translate = new StyleTranslate(new Translate(panelPos.x - width * 0.5f, panelPos.y - height * 0.5f));
+        }
     }
 }

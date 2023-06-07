@@ -2,9 +2,6 @@
     <Style src="project://database/Assets/UIDocuments/USS/LineChart.uss?fileID=7433441132597879392&amp;guid=f176fc50cb3ddd749823f813ca43fbb7&amp;type=3#LineChart" />
     <Style src="project://database/Assets/UIDocuments/USS/Icon.uss?fileID=7433441132597879392&amp;guid=ce765ee15dba226469413d6b57c6c619&amp;type=3#Icon" />
     <ui:VisualElement name="VisualElement" style="background-color: rgba(13, 13, 13, 0.75); padding-left: 20px; padding-right: 20px; padding-top: 20px; padding-bottom: 20px; align-self: flex-end; align-items: flex-end; border-top-left-radius: 20px; border-bottom-left-radius: 20px; border-top-right-radius: 20px; border-bottom-right-radius: 20px; margin-left: 10px; margin-right: 10px; margin-top: 10px; margin-bottom: 10px; border-left-color: rgb(51, 51, 51); border-right-color: rgb(51, 51, 51); border-top-color: rgb(51, 51, 51); border-bottom-color: rgb(51, 51, 51); border-left-width: 2px; border-right-width: 2px; border-top-width: 2px; border-bottom-width: 2px;">
-        <ui:VisualElement name="title" style="flex-grow: 0; flex-direction: row; flex-shrink: 1; justify-content: space-between; align-self: stretch; padding-bottom: 10px;">
-            <ui:Button display-tooltip-when-elided="true" name="close-btn" class="close-icon-button" style="display: none;" />
-            <ui:VisualElement name="detection-img" style="flex-grow: 1; background-color: rgba(39, 52, 54, 0.8); width: 600px; height: 375px; border-top-left-radius: 20px; border-bottom-left-radius: 20px; border-top-right-radius: 20px; border-bottom-right-radius: 20px;" />
-        </ui:VisualElement>
+        <ui:VisualElement name="detection-img" style="flex-grow: 1; background-color: rgba(39, 52, 54, 0.8); width: 600px; height: 375px; border-top-left-radius: 20px; border-bottom-left-radius: 20px; border-top-right-radius: 20px; border-bottom-right-radius: 20px;" />
     </ui:VisualElement>
 </ui:UXML>
