@@ -4,7 +4,9 @@ using Unity.Mathematics;
 
 namespace OmniTwin
 {
-    public class FloodVisualization : MonoBehaviour
+    using UI;
+
+    public class FloodVisualization : MonoBehaviour, System.IDisposable
     {
         [Tooltip("Resolution of flood simulation.")]
         [SerializeField] private uint2 m_Size;
@@ -95,6 +97,9 @@ namespace OmniTwin
 
             Graphics.ExecuteCommandBuffer(cmd);
 
+            UIManager manager = UIManager.Instance;
+            UIElementUtil.SetTexture(manager.FloodVisualizationUI.VisualizationImg, this.m_FloodBuffer.tex_Depth);
+
             this.m_mat_Depth.SetTexture(ShaderID.tex_Depth, this.m_FloodBuffer.tex_Depth);
             this.m_mat_WaterHeight.SetTexture(ShaderID.tex_WaterHeight, this.m_FloodBuffer.tex_WaterHeight);
 
@@ -102,12 +107,17 @@ namespace OmniTwin
             // this.m_mat_Water.SetTexture(ShaderID.tex_WaterHeight, this.m_FloodBuffer.tex_WaterHeight);
         }
 
-        private void OnDestroy()
+        public void Dispose()
         {
             if (this.m_FloodBuffer != null)
             {
                 this.m_FloodBuffer.Dispose();
             }
+        }
+
+        private void OnDestroy()
+        {
+            this.Dispose();
         }
     }
 }

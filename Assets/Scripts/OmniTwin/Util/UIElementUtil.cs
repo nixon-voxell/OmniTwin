@@ -15,5 +15,16 @@ namespace OmniTwin
                 }
             };
         }
+
+        public static void SetTexture(VisualElement visualElement, RenderTexture texture)
+        {
+            visualElement.style.backgroundImage = new StyleBackground
+            {
+                value = new Background
+                {
+                    renderTexture = texture
+                }
+            };
+        }
     }
 }
