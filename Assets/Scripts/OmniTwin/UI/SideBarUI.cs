@@ -34,11 +34,6 @@ namespace OmniTwin.UI
             this.m_Root.visible = active;
         }
 
-        public void Close()
-        {
-            this.SetVisible(false);
-        }
-
         private IEnumerator ReadWeather(string location, double lon, double lat)
         {
             string weatherURL = $"{URL}weather?lon={lon}&lat={lat}&appid={this.m_APIKey}";
@@ -84,7 +79,8 @@ namespace OmniTwin.UI
 
         private void Start()
         {
-            UIManager.Instance.SideBarUI = this;
+            UIManager manager = UIManager.Instance;
+            manager.SideBarUI = this;
 
             this.m_Root = this.m_Document.rootVisualElement;
 
@@ -97,7 +93,7 @@ namespace OmniTwin.UI
             this.m_HumidityIdxBar = this.m_Root.Q<ProgressBar>("humid-idx-bar");
             this.m_RiskIdxBar = this.m_Root.Q<ProgressBar>("risk-idx-bar");
 
-            this.m_CloseBtn.clicked += this.Close;
+            this.m_CloseBtn.clicked += () => manager.SetUIInactive(this);
 
             // set visibility to false by default
             this.SetVisible(false);

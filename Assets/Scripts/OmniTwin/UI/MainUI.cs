@@ -23,6 +23,7 @@ namespace OmniTwin.UI
 
         private Button m_LocBtn;
         private Button m_DisasterBtn;
+        private Button m_FloodvizBtn;
 
         public VisualElement Root => this.m_Root;
         public Button BackBtn => this.m_BackBtn;
@@ -45,7 +46,8 @@ namespace OmniTwin.UI
         public void LoadDetectionImage(DisasterData disasterData)
         {
             // load detection image
-            UIManager.Instance.DetectionImageUI.SetVisible(true);
+            UIManager manager = UIManager.Instance;
+            manager.SetUIActive(manager.DetectionImageUI);
             this.StartCoroutine(this.LoadDisasterTexture(disasterData.DetectionImageURL));
         }
 
@@ -134,6 +136,7 @@ namespace OmniTwin.UI
 
             this.m_LocBtn = this.m_Root.Q<Button>("loc-btn");
             this.m_DisasterBtn = this.m_Root.Q<Button>("disaster-btn");
+            this.m_FloodvizBtn = this.m_Root.Q<Button>("floodviz-btn");
 
             this.BackBtn.clicked += () =>
             {
@@ -146,7 +149,7 @@ namespace OmniTwin.UI
                 OmniWorld.IsCameraLocked = false;
                 // reenable indicators
                 manager.Indicators.SetActive(true);
-                manager.DetectionImageUI.SetVisible(false);
+                manager.DisableAllActiveUI();
 
                 this.BackBtn.visible = false;
             };
@@ -154,16 +157,33 @@ namespace OmniTwin.UI
             this.m_LocBtn.clicked += () =>
             {
                 UIManager manager = UIManager.Instance;
+
+                manager.Indicators.SetActive(true);
                 manager.LocIndicators.SetActive(true);
                 manager.FloodIndicators.SetActive(false);
+                manager.DisableAllActiveUI();
             };
 
             this.m_DisasterBtn.clicked += () =>
             {
                 UIManager manager = UIManager.Instance;
+
+                manager.Indicators.SetActive(true);
                 manager.LocIndicators.SetActive(false);
                 manager.FloodIndicators.SetActive(true);
-                manager.SideBarUI.Close();
+
+                manager.DisableAllActiveUI();
+            };
+
+            this.m_FloodvizBtn.clicked += () =>
+            {
+                UIManager manager = UIManager.Instance;
+
+                manager.Indicators.SetActive(false);
+
+                manager.DisableAllActiveUI();
+                manager.SetUIActive(manager.FloodVisualizationUI);
+                manager.SetUIActive(manager.FloodScreenshotUI);
             };
         }
     }
