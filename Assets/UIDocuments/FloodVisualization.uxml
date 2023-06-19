@@ -2,6 +2,9 @@
     <Style src="project://database/Assets/UIDocuments/USS/LineChart.uss?fileID=7433441132597879392&amp;guid=f176fc50cb3ddd749823f813ca43fbb7&amp;type=3#LineChart" />
     <Style src="project://database/Assets/UIDocuments/USS/Icon.uss?fileID=7433441132597879392&amp;guid=ce765ee15dba226469413d6b57c6c619&amp;type=3#Icon" />
     <ui:VisualElement name="VisualElement" style="background-color: rgba(13, 13, 13, 0.75); padding-left: 0; padding-right: 0; padding-top: 0; padding-bottom: 0; align-self: flex-end; margin-left: 10px; margin-right: 10px; margin-top: 10px; margin-bottom: 10px;">
-        <ui:VisualElement name="visualization-img" style="flex-grow: 1; background-color: rgba(5, 5, 5, 0.8); width: 512px; height: 512px;" />
+        <ui:VisualElement name="visualization-img" style="flex-grow: 1; background-color: rgba(5, 5, 5, 0.8); width: 512px; height: 512px;">
+            <ui:Label tabindex="-1" display-tooltip-when-elided="true" name="timer-lbl" style="color: rgb(255, 255, 255);" />
+            <ui:Button text="Button" display-tooltip-when-elided="true" name="screenshot-btn" />
+        </ui:VisualElement>
     </ui:VisualElement>
 </ui:UXML>
