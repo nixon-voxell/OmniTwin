@@ -6,7 +6,7 @@ using SimpleJSON;
 
 namespace OmniTwin.UI
 {
-    public class SideBarUI : MonoBehaviour
+    public class SideBarUI : MonoBehaviour, IVisibility
     {
         public static readonly string URL = "http://api.openweathermap.org/data/2.5/";
 
@@ -29,14 +29,14 @@ namespace OmniTwin.UI
             this.StartCoroutine(this.ReadPollution(lon, lat));
         }
 
-        public void SetDocumentVisible(bool active)
+        public void SetVisible(bool active)
         {
             this.m_Root.visible = active;
         }
 
         public void Close()
         {
-            this.SetDocumentVisible(false);
+            this.SetVisible(false);
         }
 
         private IEnumerator ReadWeather(string location, double lon, double lat)
@@ -100,7 +100,7 @@ namespace OmniTwin.UI
             this.m_CloseBtn.clicked += this.Close;
 
             // set visibility to false by default
-            this.SetDocumentVisible(false);
+            this.SetVisible(false);
         }
     }
 }

@@ -3,7 +3,7 @@ using UnityEngine.UIElements;
 
 namespace OmniTwin.UI
 {
-    public class FloodVisualizationUI : MonoBehaviour, IVisibility
+    public class FloodScreenshotUI : MonoBehaviour, IVisibility
     {
         [SerializeField] private UIDocument m_Document;
 
@@ -12,10 +12,8 @@ namespace OmniTwin.UI
 
         private Label m_FrameLbl;
 
-        private Button m_PauseBtn;
-        private Button m_PlayBtn;
-        private Button m_ResetBtn;
-        private Button m_ScreenshotBtn;
+        private Button m_PrevBtn;
+        private Button m_NextBtn;
 
         public VisualElement VisualizationImg => this.m_VisualizationImg;
 
@@ -26,17 +24,15 @@ namespace OmniTwin.UI
 
         private void Start()
         {
-            UIManager.Instance.FloodVisualizationUI = this;
+            UIManager.Instance.FloodScreenshotUI = this;
 
             this.m_Root = this.m_Document.rootVisualElement;
             this.m_VisualizationImg = this.m_Root.Q<VisualElement>("visualization-img");
 
             this.m_FrameLbl = this.m_Root.Q<Label>("frame-lbl");
 
-            this.m_PauseBtn = this.m_Root.Q<Button>("pause-btn");
-            this.m_PlayBtn = this.m_Root.Q<Button>("play-btn");
-            this.m_ResetBtn = this.m_Root.Q<Button>("reset-btn");
-            this.m_ScreenshotBtn = this.m_Root.Q<Button>("screenshot-btn");
+            this.m_PrevBtn = this.m_Root.Q<Button>("prev-btn");
+            this.m_NextBtn = this.m_Root.Q<Button>("next-btn");
 
             // set visibility to false by default
             this.SetVisible(false);

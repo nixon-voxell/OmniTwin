@@ -3,7 +3,7 @@ using UnityEngine.UIElements;
 
 namespace OmniTwin.UI
 {
-    public class DetectionImageUI : MonoBehaviour
+    public class DetectionImageUI : MonoBehaviour, IVisibility
     {
         [SerializeField] private UIDocument m_Document;
 
@@ -12,7 +12,7 @@ namespace OmniTwin.UI
 
         public VisualElement DetectionImg => this.m_DetectionImg;
 
-        public void SetDocumentVisible(bool active)
+        public void SetVisible(bool active)
         {
             this.m_Root.visible = active;
         }
@@ -25,7 +25,7 @@ namespace OmniTwin.UI
             this.m_DetectionImg = this.m_Root.Q<VisualElement>("detection-img");
 
             // set visibility to false by default
-            this.SetDocumentVisible(false);
+            this.SetVisible(false);
         }
     }
 }

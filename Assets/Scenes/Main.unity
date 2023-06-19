@@ -353,7 +353,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Document: {fileID: 243406192}
-  m_DetectionTexture: {fileID: 0}
 --- !u!1 &281109697
 GameObject:
   m_ObjectHideFlags: 0
@@ -404,6 +403,7 @@ MonoBehaviour:
   MainUI: {fileID: 0}
   SideBarUI: {fileID: 0}
   DetectionImageUI: {fileID: 0}
+  FloodVisualizationUI: {fileID: 0}
   m_Indicators: {fileID: 1888694440}
   m_LocIndicators: {fileID: 889424121}
   m_FloodIndicators: {fileID: 321704159}
@@ -959,7 +959,7 @@ GameObject:
   - component: {fileID: 886067639}
   - component: {fileID: 886067640}
   m_Layer: 0
-  m_Name: FloodSimulation
+  m_Name: FloodSimVisualizaton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1328,6 +1328,7 @@ MonoBehaviour:
   m_Dithering: 1
   m_ClearDepth: 1
   m_AllowXRRendering: 1
+  m_AllowHDROutput: 1
   m_UseScreenCoordOverride: 0
   m_ScreenSizeOverride: {x: 0, y: 0, z: 0, w: 0}
   m_ScreenCoordScaleBias: {x: 0, y: 0, z: 0, w: 0}
@@ -1543,6 +1544,7 @@ MonoBehaviour:
   m_Dithering: 0
   m_ClearDepth: 1
   m_AllowXRRendering: 1
+  m_AllowHDROutput: 1
   m_UseScreenCoordOverride: 0
   m_ScreenSizeOverride: {x: 0, y: 0, z: 0, w: 0}
   m_ScreenCoordScaleBias: {x: 0, y: 0, z: 0, w: 0}

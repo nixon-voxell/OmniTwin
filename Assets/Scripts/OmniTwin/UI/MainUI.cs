@@ -45,7 +45,7 @@ namespace OmniTwin.UI
         public void LoadDetectionImage(DisasterData disasterData)
         {
             // load detection image
-            UIManager.Instance.DetectionImageUI.SetDocumentVisible(true);
+            UIManager.Instance.DetectionImageUI.SetVisible(true);
             this.StartCoroutine(this.LoadDisasterTexture(disasterData.DetectionImageURL));
         }
 
@@ -146,7 +146,7 @@ namespace OmniTwin.UI
                 OmniWorld.IsCameraLocked = false;
                 // reenable indicators
                 manager.Indicators.SetActive(true);
-                manager.DetectionImageUI.SetDocumentVisible(false);
+                manager.DetectionImageUI.SetVisible(false);
 
                 this.BackBtn.visible = false;
             };
