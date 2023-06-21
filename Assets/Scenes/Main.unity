@@ -1281,6 +1281,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Document: {fileID: 989351062}
+  m_FloodVisualization: {fileID: 989351064}
+  m_IsPlaying: 0
 --- !u!114 &989351064
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1298,7 +1300,7 @@ MonoBehaviour:
     y: 512
   m_PropagateSteps: 10
   m_MaxWaterBlockCount: 1000000
-  m_AddBlockWaterCount: 0
+  m_AddBlockWaterCount: 10
   m_WaterBlockHeight: 10
   m_Radius: 100
   m_Center:
@@ -1307,9 +1309,9 @@ MonoBehaviour:
   m_RandomStrength: 0
   m_PropagateSpeed: 0.01
   m_TargetCamera: {fileID: 1274426495}
-  m_mat_Depth: {fileID: 2100000, guid: da77b0ef7a531024686dd346e3737d6c, type: 2}
-  m_mat_WaterHeight: {fileID: 2100000, guid: d008c516eb85f924b8062da6f3bf43f9, type: 2}
-  m_mat_Water: {fileID: 2100000, guid: f14bbf7571a182d40bce7cc02aef410c, type: 2}
+  m_MaxWaterHeight: 1000
+  m_ShallowWaterColor: {r: 0, g: 1, b: 1, a: 1}
+  m_DeepWaterColor: {r: 0, g: 0.015195131, b: 1, a: 1}
 --- !u!1 &1099965394
 GameObject:
   m_ObjectHideFlags: 0

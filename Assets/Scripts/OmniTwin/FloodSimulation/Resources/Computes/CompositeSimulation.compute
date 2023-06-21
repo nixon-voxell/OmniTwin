@@ -1,0 +1,26 @@
+uniform uint2 _Dimension;
+uniform float _InvMaxWaterHeight;
+uniform float3 _ShallowWaterColor;
+uniform float3 _DeepWaterColor;
+
+Texture2D<float> tex_Depth;
+Texture2D<float> tex_WaterHeight;
+RWTexture2D<float4> tex_Composite;
+
+#pragma kernel CompositeSimulation
+[numthreads(8, 8, 1)]
+void CompositeSimulation(uint2 DTid : SV_DispatchThreadID)
+{
+    if (any(DTid >= _Dimension)) return;
+
+    float3 color = tex_Depth[DTid];
+    float height = tex_WaterHeight[DTid];
+
+    float waterPercentage = min(1.0f, height * _InvMaxWaterHeight);
+    float3 waterColor = lerp(_ShallowWaterColor, _DeepWaterColor, waterPercentage);
+
+    waterPercentage = min(1.0f, waterPercentage * 100.0f);
+    color = lerp(color, waterColor, waterPercentage);
+
+    tex_Composite[DTid] = float4(color, 1.0f);
+}

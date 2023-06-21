@@ -6,6 +6,7 @@ public class FloodBuffer : System.IDisposable
 {
     public RenderTexture tex_Depth;
     public RenderTexture tex_WaterHeight;
+    public RenderTexture tex_Composite;
     public GraphicsBuffer gb_Heights;
     public GraphicsBuffer gb_WaterCoords;
     public GraphicsBuffer gb_WaterBlockHeights;
@@ -25,6 +26,11 @@ public class FloodBuffer : System.IDisposable
         this.tex_WaterHeight.enableRandomWrite = true;
         this.tex_WaterHeight.filterMode = FilterMode.Point;
         this.tex_WaterHeight.Create();
+
+        this.tex_Composite = new RenderTexture(_size.x, _size.y, 0, RenderTextureFormat.ARGBFloat, RenderTextureReadWrite.Linear);
+        this.tex_Composite.enableRandomWrite = true;
+        this.tex_Composite.filterMode = FilterMode.Point;
+        this.tex_Composite.Create();
 
         this.gb_Heights = new GraphicsBuffer(GraphicsBuffer.Target.Structured, count, UnsafeUtility.SizeOf<float>());
         this.gb_WaterCoords = new GraphicsBuffer(GraphicsBuffer.Target.Structured, (int)maxWaterCount, UnsafeUtility.SizeOf<float2>());

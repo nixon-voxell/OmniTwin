@@ -29,19 +29,22 @@ namespace OmniTwin
         [Header("Simulation")]
         [SerializeField] private float m_RandomStrength;
         [SerializeField] private float m_PropagateSpeed;
+        private int m_FrameCount;
 
         [Header("Visualization")]
         [SerializeField] private Camera m_TargetCamera;
-
-        [SerializeField] private Material m_mat_Depth;
-        [SerializeField] private Material m_mat_WaterHeight;
-        [SerializeField] private Material m_mat_Water;
+        [SerializeField] private float m_MaxWaterHeight;
+        [SerializeField] private Color m_ShallowWaterColor;
+        [SerializeField] private Color m_DeepWaterColor;
 
         private FloodBuffer m_FloodBuffer;
+
+        public FloodBuffer FloodBuffer => this.m_FloodBuffer;
 
         // properties
         public int2 Size => (int2)this.m_Size;
         public int Count => this.Size.x * this.Size.y;
+        public int FrameCount => this.m_FrameCount;
 
         private void Awake()
         {
@@ -50,14 +53,26 @@ namespace OmniTwin
 
         private void Start()
         {
-            this.m_FloodBuffer = new FloodBuffer(this.m_Size, this.m_MaxWaterBlockCount);
+            this.ResetSim();
+        }
+
+        public void ResetSim()
+        {
+            this.m_FrameCount = 0;
             this.m_WaterBlockCount = 0;
+
+            if (this.m_FloodBuffer != null)
+            {
+                this.m_FloodBuffer.Dispose();
+            }
+            this.m_FloodBuffer = new FloodBuffer(this.m_Size, this.m_MaxWaterBlockCount);
 
             FloodSimulation.SetupCamera(this.m_TargetCamera, this.m_FloodBuffer.tex_Depth);
         }
 
-        private void Update()
+        public void UpdateSim()
         {
+            this.m_FrameCount += 1;
             uint seed = (uint)UnityEngine.Random.Range(-123456789, 123456789);
             this.m_TargetCamera.Render();
 
@@ -95,16 +110,16 @@ namespace OmniTwin
                 }
             }
 
+            FloodSimulation.Compute_CompositeSimulation(
+                cmd,
+                this.m_MaxWaterHeight, this.m_ShallowWaterColor, this.m_DeepWaterColor,
+                this.m_FloodBuffer
+            );
+
             Graphics.ExecuteCommandBuffer(cmd);
 
             UIManager manager = UIManager.Instance;
-            UIElementUtil.SetTexture(manager.FloodVisualizationUI.VisualizationImg, this.m_FloodBuffer.tex_Depth);
-
-            this.m_mat_Depth.SetTexture(ShaderID.tex_Depth, this.m_FloodBuffer.tex_Depth);
-            this.m_mat_WaterHeight.SetTexture(ShaderID.tex_WaterHeight, this.m_FloodBuffer.tex_WaterHeight);
-
-            // this.m_mat_Water.SetTexture(ShaderID.tex_Depth, this.m_FloodBuffer.tex_Depth);
-            // this.m_mat_Water.SetTexture(ShaderID.tex_WaterHeight, this.m_FloodBuffer.tex_WaterHeight);
+            UIElementUtil.SetTexture(manager.FloodVisualizationUI.VisualizationImg, this.m_FloodBuffer.tex_Composite);
         }
 
         public void Dispose()

@@ -14,9 +14,13 @@ public static class ShaderID
     public static readonly int _Seed = Shader.PropertyToID("_Seed");
     public static readonly int _RandomStrength = Shader.PropertyToID("_RandomStrength");
     public static readonly int _PropagateSpeed = Shader.PropertyToID("_PropagateSpeed");
+    public static readonly int _InvMaxWaterHeight = Shader.PropertyToID("_InvMaxWaterHeight");
+    public static readonly int _ShallowWaterColor = Shader.PropertyToID("_ShallowWaterColor");
+    public static readonly int _DeepWaterColor = Shader.PropertyToID("_DeepWaterColor");
 
     public static readonly int tex_Depth = Shader.PropertyToID("tex_Depth");
     public static readonly int tex_WaterHeight = Shader.PropertyToID("tex_WaterHeight");
+    public static readonly int tex_Composite = Shader.PropertyToID("tex_Composite");
     public static readonly int gb_Array = Shader.PropertyToID("gb_Array");
     public static readonly int gb_Heights = Shader.PropertyToID("gb_Heights");
     public static readonly int gb_WaterCoords = Shader.PropertyToID("gb_WaterCoords");

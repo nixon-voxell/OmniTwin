@@ -12,6 +12,7 @@ namespace OmniTwin
         public static ComputeShader cs_CalculateWaterHeight { get; private set; }
         public static ComputeShader cs_WaterHeightToTexture { get; private set; }
         public static ComputeShader cs_PropagateWater { get; private set; }
+        public static ComputeShader cs_CompositeSimulation { get; private set; }
 
         public static void Initialize()
         {
@@ -21,6 +22,7 @@ namespace OmniTwin
             cs_CalculateWaterHeight = Resources.Load<ComputeShader>("Computes/CalculateWaterHeight");
             cs_WaterHeightToTexture = Resources.Load<ComputeShader>("Computes/WaterHeightToTexture");
             cs_PropagateWater = Resources.Load<ComputeShader>("Computes/PropagateWater");
+            cs_CompositeSimulation = Resources.Load<ComputeShader>("Computes/CompositeSimulation");
         }
 
         /// <summary>Set a range of integers in the buffer to a number.</summary>
@@ -167,6 +169,43 @@ namespace OmniTwin
             );
 
             cmd.EndSample("PropagateWater");
+        }
+
+        public static void Compute_CompositeSimulation(
+            CommandBuffer cmd,
+            float maxWaterHeight, Color shallowWaterColor, Color deepWaterColor,
+            FloodBuffer floodBuffer
+        ) {
+            cmd.BeginSample("CompositeSimulation");
+
+            int width = floodBuffer.tex_Composite.width;
+            int height = floodBuffer.tex_Composite.height;
+
+            cmd.SetComputeIntParams(cs_CompositeSimulation, ShaderID._Dimension, width, height);
+            cmd.SetComputeFloatParam(cs_CompositeSimulation, ShaderID._InvMaxWaterHeight, 1.0f / maxWaterHeight);
+            cmd.SetComputeFloatParams(cs_CompositeSimulation, ShaderID._ShallowWaterColor, shallowWaterColor.r, shallowWaterColor.g, shallowWaterColor.b);
+            cmd.SetComputeFloatParams(cs_CompositeSimulation, ShaderID._DeepWaterColor, deepWaterColor.r, deepWaterColor.g, deepWaterColor.b);
+
+            cmd.SetComputeTextureParam(
+                cs_CompositeSimulation, 0, ShaderID.tex_Depth,
+                floodBuffer.tex_Depth
+            );
+            cmd.SetComputeTextureParam(
+                cs_CompositeSimulation, 0, ShaderID.tex_WaterHeight,
+                floodBuffer.tex_WaterHeight
+            );
+            cmd.SetComputeTextureParam(
+                cs_CompositeSimulation, 0, ShaderID.tex_Composite,
+                floodBuffer.tex_Composite
+            );
+
+            cmd.DispatchCompute(
+                cs_CompositeSimulation, 0,
+                mathx.batch_count(width, 8),
+                mathx.batch_count(height, 8), 1
+            );
+
+            cmd.EndSample("CompositeSimulation");
         }
 
         /// <summary>Setup camera to render depth.</summary>

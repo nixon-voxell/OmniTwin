@@ -13,5 +13,4 @@ void WaterHeightToTexture(uint2 DTid : SV_DispatchThreadID)
     if (any(DTid >= _Dimension)) return;
 
     tex_WaterHeight[DTid] = float(gb_WaterHeights[flatten_uint2(DTid, _Dimension)]) * _WaterBlockHeight;
-    // tex_WaterHeight[DTid] = 1.0f;
 }
