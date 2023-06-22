@@ -1309,7 +1309,7 @@ MonoBehaviour:
   m_RandomStrength: 0
   m_PropagateSpeed: 0.01
   m_TargetCamera: {fileID: 1274426495}
-  m_MaxWaterHeight: 1000
+  m_MaxWaterHeight: 50
   m_ShallowWaterColor: {r: 0, g: 1, b: 1, a: 1}
   m_DeepWaterColor: {r: 0, g: 0.015195131, b: 1, a: 1}
 --- !u!1 &1099965394
