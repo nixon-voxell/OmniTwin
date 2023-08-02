@@ -118,7 +118,7 @@ namespace OmniTwin
 
             Graphics.ExecuteCommandBuffer(cmd);
 
-            UIManager manager = UIManager.Instance;
+            UXManager manager = UXManager.Instance;
             UIElementUtil.SetTexture(manager.FloodVisualizationUI.VisualizationImg, this.m_FloodBuffer.tex_Composite);
         }
 

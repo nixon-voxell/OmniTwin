@@ -79,7 +79,7 @@ namespace OmniTwin.UI
 
         private void Start()
         {
-            UIManager manager = UIManager.Instance;
+            UXManager manager = UXManager.Instance;
             manager.SideBarUI = this;
 
             this.m_Root = this.m_Document.rootVisualElement;

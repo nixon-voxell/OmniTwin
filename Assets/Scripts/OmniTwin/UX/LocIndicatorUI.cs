@@ -29,7 +29,7 @@ namespace OmniTwin.UI
 
             this.m_LocBtn.clicked += () =>
             {
-                UIManager.Instance.ShowSideBarWithInfo(
+                UXManager.Instance.ShowSideBarWithInfo(
                     this.m_LocName,
                     this.m_Anchor.longitudeLatitudeHeight.x,
                     this.m_Anchor.longitudeLatitudeHeight.y

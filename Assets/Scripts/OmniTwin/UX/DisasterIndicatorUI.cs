@@ -38,7 +38,7 @@ namespace OmniTwin.UI
 
             this.m_DisasterBtn.clicked += () =>
             {
-                UIManager manager = UIManager.Instance;
+                UXManager manager = UXManager.Instance;
                 manager.Indicators.SetActive(false);
 
                 // offset geo coordinate

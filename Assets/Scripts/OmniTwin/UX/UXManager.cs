@@ -4,9 +4,9 @@ using Voxell.Util;
 
 namespace OmniTwin.UI
 {
-    public class UIManager : MonoBehaviour
+    public class UXManager : MonoBehaviour
     {
-        public static UIManager Instance;
+        public static UXManager Instance;
 
         [InspectOnly] public MainUI MainUI;
         [InspectOnly] public SideBarUI SideBarUI;

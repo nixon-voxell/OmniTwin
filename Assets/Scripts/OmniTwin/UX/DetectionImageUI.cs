@@ -19,7 +19,7 @@ namespace OmniTwin.UI
 
         private void Start()
         {
-            UIManager.Instance.DetectionImageUI = this;
+            UXManager.Instance.DetectionImageUI = this;
 
             this.m_Root = this.m_Document.rootVisualElement;
             this.m_DetectionImg = this.m_Root.Q<VisualElement>("detection-img");

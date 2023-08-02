@@ -17,6 +17,12 @@ namespace OmniTwin.UI
 
         public VisualElement VisualizationImg => this.m_VisualizationImg;
 
+        public void SetFrameData(int index, int count)
+        {
+            this.m_FrameLbl.text = $"Frame: {index}/{count}";
+            // TODO: set frame texture as well
+        }
+
         public void SetVisible(bool active)
         {
             this.m_Root.visible = active;
@@ -24,7 +30,7 @@ namespace OmniTwin.UI
 
         private void Start()
         {
-            UIManager.Instance.FloodScreenshotUI = this;
+            UXManager.Instance.FloodScreenshotUI = this;
 
             this.m_Root = this.m_Document.rootVisualElement;
             this.m_VisualizationImg = this.m_Root.Q<VisualElement>("visualization-img");

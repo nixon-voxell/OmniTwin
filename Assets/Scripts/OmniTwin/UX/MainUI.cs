@@ -46,7 +46,7 @@ namespace OmniTwin.UI
         public void LoadDetectionImage(DisasterData disasterData)
         {
             // load detection image
-            UIManager manager = UIManager.Instance;
+            UXManager manager = UXManager.Instance;
             manager.SetUIActive(manager.DetectionImageUI);
             this.StartCoroutine(this.LoadDisasterTexture(disasterData.DetectionImageURL));
         }
@@ -119,13 +119,13 @@ namespace OmniTwin.UI
             } else
             {
                 Texture2D texture = ((DownloadHandlerTexture)(request.downloadHandler)).texture;
-                UIElementUtil.SetTexture(UIManager.Instance.DetectionImageUI.DetectionImg, texture);
+                UIElementUtil.SetTexture(UXManager.Instance.DetectionImageUI.DetectionImg, texture);
             }
         }
 
         private void Start()
         {
-            UIManager.Instance.MainUI = this;
+            UXManager.Instance.MainUI = this;
 
             this.m_Root = this.m_Document.rootVisualElement;
 
@@ -140,7 +140,7 @@ namespace OmniTwin.UI
 
             this.BackBtn.clicked += () =>
             {
-                UIManager manager = UIManager.Instance;
+                UXManager manager = UXManager.Instance;
                 // stop all animations
                 this.StopAllCoroutines();
                 // stop rain
@@ -156,7 +156,7 @@ namespace OmniTwin.UI
 
             this.m_LocBtn.clicked += () =>
             {
-                UIManager manager = UIManager.Instance;
+                UXManager manager = UXManager.Instance;
 
                 manager.Indicators.SetActive(true);
                 manager.LocIndicators.SetActive(true);
@@ -166,7 +166,7 @@ namespace OmniTwin.UI
 
             this.m_DisasterBtn.clicked += () =>
             {
-                UIManager manager = UIManager.Instance;
+                UXManager manager = UXManager.Instance;
 
                 manager.Indicators.SetActive(true);
                 manager.LocIndicators.SetActive(false);
@@ -177,7 +177,7 @@ namespace OmniTwin.UI
 
             this.m_FloodvizBtn.clicked += () =>
             {
-                UIManager manager = UIManager.Instance;
+                UXManager manager = UXManager.Instance;
 
                 manager.Indicators.SetActive(false);
 

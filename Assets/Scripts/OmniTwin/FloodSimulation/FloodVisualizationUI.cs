@@ -37,7 +37,7 @@ namespace OmniTwin.UI
 
         private void Start()
         {
-            UIManager.Instance.FloodVisualizationUI = this;
+            UXManager.Instance.FloodVisualizationUI = this;
 
             this.m_Root = this.m_Document.rootVisualElement;
             this.m_VisualizationImg = this.m_Root.Q<VisualElement>("visualization-img");
