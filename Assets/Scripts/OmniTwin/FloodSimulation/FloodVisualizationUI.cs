@@ -27,7 +27,7 @@ namespace OmniTwin.UI
         [SerializeField, InspectOnly] private bool m_IsPlaying = false;
         private List<Screenshot> m_Screenshots;
 
-        public VisualElement VisualizationImg => this.m_VisualizationImg;
+        public VisualElement SimulationImg => this.m_SimulationImg;
 
         public void SetVisible(bool active)
         {
