@@ -12,7 +12,6 @@ namespace OmniTwin.UI
         [InspectOnly] public SideBarUI SideBarUI;
         [InspectOnly] public DetectionImageUI DetectionImageUI;
         [InspectOnly] public FloodVisualizationUI FloodVisualizationUI;
-        [InspectOnly] public FloodScreenshotUI FloodScreenshotUI;
 
         [SerializeField] private GameObject m_Indicators;
         [SerializeField] private GameObject m_LocIndicators;

@@ -183,7 +183,6 @@ namespace OmniTwin.UI
 
                 manager.DisableAllActiveUI();
                 manager.SetUIActive(manager.FloodVisualizationUI);
-                manager.SetUIActive(manager.FloodScreenshotUI);
             };
         }
     }

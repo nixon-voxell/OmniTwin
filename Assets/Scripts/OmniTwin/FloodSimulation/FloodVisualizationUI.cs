@@ -11,14 +11,18 @@ namespace OmniTwin.UI
         [SerializeField] private FloodVisualization m_FloodVisualization;
 
         private VisualElement m_Root;
+        private VisualElement m_SimulationImg;
         private VisualElement m_VisualizationImg;
 
-        private Label m_FrameLbl;
+        private Label m_SimFrameLbl;
+        private Label m_ViewFrameLbl;
 
         private Button m_PauseBtn;
         private Button m_PlayBtn;
         private Button m_ResetBtn;
         private Button m_ScreenshotBtn;
+        private Button m_PrevBtn;
+        private Button m_NextBtn;
 
         [SerializeField, InspectOnly] private bool m_IsPlaying = false;
         private List<Screenshot> m_Screenshots;
@@ -40,9 +44,11 @@ namespace OmniTwin.UI
             UXManager.Instance.FloodVisualizationUI = this;
 
             this.m_Root = this.m_Document.rootVisualElement;
+            this.m_SimulationImg = this.m_Root.Q<VisualElement>("simulation-img");
             this.m_VisualizationImg = this.m_Root.Q<VisualElement>("visualization-img");
 
-            this.m_FrameLbl = this.m_Root.Q<Label>("frame-lbl");
+            this.m_SimFrameLbl = this.m_Root.Q<Label>("simframe-lbl");
+            this.m_ViewFrameLbl = this.m_Root.Q<Label>("viewframe-lbl");
 
             this.m_PauseBtn = this.m_Root.Q<Button>("pause-btn");
             this.m_PlayBtn = this.m_Root.Q<Button>("play-btn");
@@ -50,6 +56,11 @@ namespace OmniTwin.UI
             this.m_ScreenshotBtn = this.m_Root.Q<Button>("screenshot-btn");
 
             this.m_Screenshots = new List<Screenshot>(64);
+
+            this.m_VisualizationImg = this.m_Root.Q<VisualElement>("visualization-img");
+            this.m_PrevBtn = this.m_Root.Q<Button>("prev-btn");
+            this.m_NextBtn = this.m_Root.Q<Button>("next-btn");
+
 
             // set visibility to false by default
             this.SetVisible(false);
@@ -79,7 +90,7 @@ namespace OmniTwin.UI
         private void Update()
         {
             // update frame count label
-            this.m_FrameLbl.text = $"Frame: {this.m_FloodVisualization.FrameCount}";
+            this.m_SimFrameLbl.text = $"Frame: {this.m_FloodVisualization.FrameCount}";
 
             if (this.m_IsPlaying)
             {
