@@ -4,7 +4,7 @@
     <ui:VisualElement style="background-color: rgba(0, 0, 0, 0); flex-direction: row;">
         <ui:VisualElement style="background-color: rgba(13, 13, 13, 0.75); padding-left: 0; padding-right: 0; padding-top: 0; padding-bottom: 0; margin-left: 10px; margin-right: 10px; margin-top: 10px; margin-bottom: 10px;">
             <ui:VisualElement name="visualization-img" style="flex-grow: 1; background-color: rgba(5, 5, 5, 0.8); width: 512px; height: 512px;">
-                <ui:Label tabindex="-1" display-tooltip-when-elided="true" name="viewframe-lbl" text="Frame: 0" style="color: rgb(255, 255, 255); align-self: flex-end; font-size: 24px; margin-left: 20px; margin-right: 20px; margin-top: 20px; margin-bottom: 20px;" />
+                <ui:Label tabindex="-1" display-tooltip-when-elided="true" name="viewframe-lbl" text="Frame: -" style="color: rgb(255, 255, 255); align-self: flex-end; font-size: 24px; margin-left: 20px; margin-right: 20px; margin-top: 20px; margin-bottom: 20px;" />
             </ui:VisualElement>
             <ui:VisualElement style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); flex-direction: row-reverse; padding-left: 10px; padding-right: 10px; padding-top: 10px; padding-bottom: 10px;">
                 <ui:Button display-tooltip-when-elided="true" name="next-btn" class="icon-button" style="background-image: url(&apos;project://database/Assets/Sprites/SimpleIcon/style02/shape032_style02_color08.png?fileID=2800000&amp;guid=acf7e2c15c43e5a46af99ea0a85e05ca&amp;type=3#shape032_style02_color08&apos;);" />
@@ -14,7 +14,7 @@
         <ui:VisualElement style="flex-grow: 1; background-color: rgba(0, 0, 0, 0);" />
         <ui:VisualElement style="background-color: rgba(13, 13, 13, 0.75); padding-left: 0; padding-right: 0; padding-top: 0; padding-bottom: 0; margin-left: 10px; margin-right: 10px; margin-top: 10px; margin-bottom: 10px;">
             <ui:VisualElement name="simulation-img" style="flex-grow: 1; background-color: rgba(5, 5, 5, 0.8); width: 512px; height: 512px;">
-                <ui:Label tabindex="-1" display-tooltip-when-elided="true" name="simframe-lbl" text="Frame: 0" style="color: rgb(255, 255, 255); align-self: flex-end; font-size: 24px; margin-left: 20px; margin-right: 20px; margin-top: 20px; margin-bottom: 20px;" />
+                <ui:Label tabindex="-1" display-tooltip-when-elided="true" name="simframe-lbl" text="Frame: -" style="color: rgb(255, 255, 255); align-self: flex-end; font-size: 24px; margin-left: 20px; margin-right: 20px; margin-top: 20px; margin-bottom: 20px;" />
             </ui:VisualElement>
             <ui:VisualElement style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); flex-direction: row; padding-left: 10px; padding-right: 10px; padding-top: 10px; padding-bottom: 10px;">
                 <ui:Button display-tooltip-when-elided="true" name="pause-btn" class="icon-button" style="background-image: url(&apos;project://database/Assets/Sprites/SimpleIcon/style02/shape002_style02_color05.png?fileID=2800000&amp;guid=d3e0a18d066f2db4e80a03ddcb63fd2a&amp;type=3#shape002_style02_color05&apos;);" />
