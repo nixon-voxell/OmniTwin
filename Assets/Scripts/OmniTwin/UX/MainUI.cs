@@ -84,26 +84,34 @@ namespace OmniTwin.UI
 
         private IEnumerator StartRainFall(float vfxSpeed)
         {
-            float t = OmniWorld.HybridDynCameraMono.RainVFX.GetFloat("Intensity");
+            var cameraMono = OmniWorld.HybridDynCameraMono;
+            float t = cameraMono.RainVFX.GetFloat("Intensity");
 
             // perform a linear lerp
             while (t < 1.0f)
             {
-                t += Time.deltaTime * vfxSpeed;
-                OmniWorld.HybridDynCameraMono.RainVFX.SetFloat("Intensity", math.saturate(t));
+                t = math.saturate(t + Time.deltaTime * vfxSpeed);
+
+                cameraMono.RainVFX.SetFloat("Intensity", t);
+                cameraMono.RainSource.volume = t;
+
                 yield return null;
             }
         }
 
         private IEnumerator StopRainFall(float vfxSpeed)
         {
-            float t = OmniWorld.HybridDynCameraMono.RainVFX.GetFloat("Intensity");
+            var cameraMono = OmniWorld.HybridDynCameraMono;
+            float t = cameraMono.RainVFX.GetFloat("Intensity");
 
             // perform a linear lerp
             while (t > 0.0f)
             {
-                t -= Time.deltaTime * vfxSpeed;
-                OmniWorld.HybridDynCameraMono.RainVFX.SetFloat("Intensity", math.saturate(t));
+                t = math.saturate(t - Time.deltaTime * vfxSpeed);
+
+                cameraMono.RainVFX.SetFloat("Intensity", t);
+                cameraMono.RainSource.volume = t;
+
                 yield return null;
             }
         }
