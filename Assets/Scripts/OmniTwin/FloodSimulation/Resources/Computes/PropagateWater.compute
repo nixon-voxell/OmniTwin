@@ -1,0 +1,72 @@
+#include "../HLSL/Mathx.hlsl"
+#include "../HLSL/Random.hlsl"
+
+#define RIGHT uint2(1, 0)
+#define TOP uint2(0, 1)
+
+uniform uint _ThreadCount;
+uniform uint2 _Dimension;
+uniform float _WaterBlockHeight;
+uniform float _PropagateSpeed;
+uniform float _RandomStrength;
+uniform uint _Seed;
+
+StructuredBuffer<float> gb_Heights;
+StructuredBuffer<uint> gb_WaterHeights;
+RWStructuredBuffer<float2> gb_WaterCoords;
+StructuredBuffer<uint> gb_WaterBlockHeights;
+
+float get_height(uint2 int_coord)
+{
+    uint flatten_idx = flatten_uint2(int_coord, _Dimension);
+    float height = gb_Heights[flatten_idx];
+    height += float(gb_WaterHeights[flatten_idx]) * _WaterBlockHeight;
+
+    return height;
+}
+
+float get_blockheight(uint2 int_coord)
+{
+    uint flatten_idx = flatten_uint2(int_coord, _Dimension);
+    float height = gb_Heights[flatten_idx];
+    height += float(gb_WaterBlockHeights[flatten_idx] - 1) * _WaterBlockHeight;
+
+    return height;
+}
+
+#pragma kernel PropagateWater
+[numthreads(64, 1, 1)]
+void PropagateWater(uint DTid : SV_DispatchThreadID)
+{
+    if (DTid >= _ThreadCount) return;
+
+    float2 coord = gb_WaterCoords[DTid];
+    uint2 int_coord = uint2(coord);
+
+    // get current height and move towards lower areas
+    float currHeight = get_blockheight(int_coord);
+    // sample surroundings
+    float rightHeight = get_height(int_coord + RIGHT);
+    float topHeight = get_height(int_coord + TOP);
+    float leftHeight = get_height(int_coord - RIGHT);
+    float downHeight = get_height(int_coord - TOP);
+    // return;
+
+    Random rand = Random::CreateFromIndex(DTid + _Seed);
+
+    float theta = rand.NextFloat(2.0f * PI);
+    float2 randDir = normalize(float2(cos(theta), sin(theta))) * _RandomStrength;
+
+    float2 dir = 0.0f;
+
+    dir.x += currHeight - rightHeight;
+    dir.x -= currHeight - leftHeight;
+    dir.y += currHeight - topHeight;
+    dir.y -= currHeight - downHeight;
+
+    if (all(dir == 0.0f)) return;
+    dir = normalize(dir + randDir);
+
+    coord = coord + dir * _PropagateSpeed;
+    gb_WaterCoords[DTid] = coord;
+}

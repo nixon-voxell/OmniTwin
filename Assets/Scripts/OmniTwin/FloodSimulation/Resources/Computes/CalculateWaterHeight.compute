@@ -1,0 +1,20 @@
+#include "../HLSL/Mathx.hlsl"
+
+uniform uint _ThreadCount;
+uniform uint2 _Dimension;
+
+globallycoherent RWStructuredBuffer<uint> gb_WaterHeights;
+StructuredBuffer<float2> gb_WaterCoords;
+RWStructuredBuffer<uint> gb_WaterBlockHeights;
+
+#pragma kernel CalculateWaterHeight
+[numthreads(64, 1, 1)]
+void CalculateWaterHeight(uint DTid : SV_DispatchThreadID)
+{
+    if (DTid >= _ThreadCount) return;
+
+    uint2 coord = uint2(gb_WaterCoords[DTid]);
+    uint blockHeight;
+    InterlockedAdd(gb_WaterHeights[flatten_uint2(coord, _Dimension)], 1, blockHeight);
+    gb_WaterBlockHeights[DTid] = blockHeight;
+}

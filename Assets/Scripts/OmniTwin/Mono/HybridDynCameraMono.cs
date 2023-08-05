@@ -15,6 +15,7 @@ namespace OmniTwin
         [SerializeField] private double3 m_MaxPos;
 
         [SerializeField] private VisualEffect m_RainVFX;
+        [SerializeField] private AudioSource m_RainSource;
 
         public CesiumGlobeAnchor CesiumGlobeAnchor => this.m_CesiumGlobeAnchor;
         public double3 CameraSpeed => this.m_CameraSpeed;
@@ -23,6 +24,7 @@ namespace OmniTwin
         public double3 MinPos => this.m_MinPos;
         public double3 MaxPos => this.m_MaxPos;
         public VisualEffect RainVFX => this.m_RainVFX;
+        public AudioSource RainSource => this.m_RainSource;
 
         private void Awake()
         {
