@@ -9,20 +9,25 @@
     border-bottom-color: rgba(0, 0, 0, 0);
 }
 
-.icon:hover {
-    -unity-background-image-tint-color: rgba(255, 255, 255, 0.5);
-}
-
 .border-icon {
-    border-top-left-radius: 20px;
-    border-bottom-left-radius: 20px;
-    border-top-right-radius: 20px;
-    border-bottom-right-radius: 20px;
+    transition-timing-function: ease-in-out-cubic;
+    transition-duration: 0.1s;
+    background-color: rgba(12, 255, 237, 0.2);
+    border-left-color: rgba(12, 255, 237, 0.5);
+    border-right-color: rgba(12, 255, 237, 0.5);
+    border-top-color: rgba(12, 255, 237, 0.5);
+    border-bottom-color: rgba(12, 255, 237, 0.5);
+    border-top-width: 4px;
+    border-right-width: 4px;
+    border-bottom-width: 4px;
+    border-left-width: 4px;
 }
 
 .border-icon:hover {
-    border-top-left-radius: 10px;
-    border-bottom-left-radius: 10px;
-    border-top-right-radius: 10px;
-    border-bottom-right-radius: 10px;
+    scale: 1.1 1.1;
+    background-color: rgba(12, 255, 237, 0.8);
+    border-left-color: rgb(76, 255, 242);
+    border-right-color: rgb(76, 255, 242);
+    border-top-color: rgb(76, 255, 242);
+    border-bottom-color: rgb(76, 255, 242);
 }

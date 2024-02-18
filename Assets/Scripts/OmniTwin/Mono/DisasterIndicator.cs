@@ -46,7 +46,8 @@ namespace OmniTwin
             if (request.result != UnityWebRequest.Result.Success)
             {
                 Debug.Log(request.error);
-            } else
+            }
+            else
             {
                 JSONNode response = JSON.Parse(request.downloadHandler.text);
 
@@ -74,7 +75,8 @@ namespace OmniTwin
                             this.m_IndicatorUIPool[i].gameObject.SetActive(false);
                         }
                     }
-                } else
+                }
+                else
                 {
                     // initialize pool array
                     this.m_IndicatorUIPool = new DisasterIndicatorUI[disasterData.Length];
@@ -113,15 +115,19 @@ namespace OmniTwin
                 {
                     DisasterData data = disasterData[f];
 
-                    this.m_IndicatorUIPool[f].gameObject.SetActive(true);
-                    this.m_IndicatorUIPool[f].Init(data);
-
                     // set icon if available
                     Texture2D icon;
-                    this.m_IconMaps.TryGetValue(data.Category, out icon);
-                    if (icon != null)
+                    Debug.Log(data.Category);
+                    if (data.Category != null)
                     {
-                        this.m_IndicatorUIPool[f].SetIcon(icon);
+                        this.m_IconMaps.TryGetValue(data.Category, out icon);
+                        if (icon != null)
+                        {
+                            DisasterIndicatorUI indicatorUI = this.m_IndicatorUIPool[f];
+                            indicatorUI.gameObject.SetActive(true);
+                            indicatorUI.Init(data);
+                            indicatorUI.SetIcon(icon);
+                        }
                     }
                 }
             }
