@@ -957,16 +957,16 @@ MonoBehaviour:
   _maximumScreenSpaceError: 16
   _preloadAncestors: 1
   _preloadSiblings: 1
-  _forbidHoles: 0
+  _forbidHoles: 1
   _maximumSimultaneousTileLoads: 20
   _maximumCachedBytes: 536870912
   _loadingDescendantLimit: 20
-  _enableFrustumCulling: 1
+  _enableFrustumCulling: 0
   _enableFogCulling: 1
   _enforceCulledScreenSpaceError: 1
   _culledScreenSpaceError: 64
   _opaqueMaterial: {fileID: 0}
-  _generateSmoothNormals: 0
+  _generateSmoothNormals: 1
   _pointCloudShading:
     _attenuation: 0
     _geometricErrorScale: 1
