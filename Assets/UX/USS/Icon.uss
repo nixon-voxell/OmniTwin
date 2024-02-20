@@ -24,55 +24,25 @@
     rotate: 90deg;
 }
 
-.loc-icon-button {
-    width: 64px;
-    height: 64px;
-    border-left-width: 0;
-    border-right-width: 0;
-    border-top-width: 0;
-    border-bottom-width: 0;
-    background-image: url('project://database/Assets/Sprites/SimpleIcon/style01/shape099_style01_color09.png?fileID=2800000&guid=aca10737377ddb84aa8e3751e7cb02f4&type=3#shape099_style01_color09');
-    background-color: rgba(0, 0, 0, 0);
-}
-
-.loc-icon-button:hover {
-    background-image: url('project://database/Assets/Sprites/SimpleIcon/style01/shape099_style01_color03.png?fileID=2800000&guid=65691b6b63ff76442a87659c0a1aa691&type=3#shape099_style01_color03');
-}
-
-.loc-icon-button:focus {
-    background-image: url('project://database/Assets/Sprites/SimpleIcon/style01/shape099_style01_color03.png?fileID=2800000&guid=65691b6b63ff76442a87659c0a1aa691&type=3#shape099_style01_color03');
-}
-
 .disaster-icon-button {
     width: 64px;
     height: 64px;
     transition-duration: 0.15s;
     transition-timing-function: ease-in-out-cubic;
-    background-color: rgba(82, 204, 194, 0.2);
-    border-top-width: 4px;
-    border-right-width: 4px;
-    border-bottom-width: 4px;
-    border-left-width: 4px;
-    border-left-color: rgb(102, 255, 243);
-    border-right-color: rgb(102, 255, 243);
-    border-top-color: rgb(102, 255, 243);
-    border-bottom-color: rgb(102, 255, 243);
+    background-color: rgba(255, 255, 255, 0.05);
     border-top-left-radius: 8px;
     border-top-right-radius: 8px;
     border-bottom-right-radius: 8px;
     border-bottom-left-radius: 8px;
+    border-top-width: 0;
+    border-right-width: 0;
+    border-bottom-width: 0;
+    border-left-width: 0;
 }
 
 .disaster-icon-button:hover {
     scale: 1.2 1.2;
-    background-color: rgba(82, 204, 194, 0.7);
-    border-left-color: rgb(0, 255, 235);
-    border-right-color: rgb(0, 255, 235);
-    border-top-color: rgb(0, 255, 235);
-    border-bottom-color: rgb(0, 255, 235);
-}
-
-.disaster-icon-button:focus {
+    background-color: rgba(255, 255, 255, 0.15);
 }
 
 .loc-btn {
