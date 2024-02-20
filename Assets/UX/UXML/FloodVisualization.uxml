@@ -2,26 +2,38 @@
     <Style src="project://database/Assets/UX/USS/LineChart.uss?fileID=7433441132597879392&amp;guid=f176fc50cb3ddd749823f813ca43fbb7&amp;type=3#LineChart" />
     <Style src="project://database/Assets/UX/USS/Icon.uss?fileID=7433441132597879392&amp;guid=ce765ee15dba226469413d6b57c6c619&amp;type=3#Icon" />
     <ui:VisualElement style="background-color: rgba(0, 0, 0, 0); flex-direction: row;">
-        <ui:VisualElement style="background-color: rgba(13, 13, 13, 0.75); padding-left: 0; padding-right: 0; padding-top: 0; padding-bottom: 0; margin-left: 10px; margin-right: 10px; margin-top: 10px; margin-bottom: 10px;">
-            <ui:VisualElement name="visualization-img" style="flex-grow: 1; background-color: rgba(5, 5, 5, 0.8); width: 512px; height: 512px;">
-                <ui:Label tabindex="-1" display-tooltip-when-elided="true" name="viewframe-lbl" text="Frame: -" style="color: rgb(255, 255, 255); align-self: flex-end; font-size: 24px; margin-left: 20px; margin-right: 20px; margin-top: 20px; margin-bottom: 20px;" />
+        <ui:VisualElement class="panel-bg">
+            <ui:VisualElement name="visualization-img" style="flex-grow: 1; background-color: rgba(5, 5, 5, 0.8); width: 512px; height: 512px; border-top-left-radius: 8px; border-top-right-radius: 8px; border-bottom-right-radius: 0; border-bottom-left-radius: 0;">
+                <ui:Label tabindex="-1" display-tooltip-when-elided="true" name="viewframe-lbl" text="Frame: -" style="color: rgb(255, 255, 255); align-self: flex-end; font-size: 24px; margin-left: 20px; margin-right: 20px; margin-top: 20px; margin-bottom: 20px; -unity-font-definition: url(&apos;project://database/Assets/Fonts/HurmeGeometricSans4-Bold%20SDF.asset?fileID=11400000&amp;guid=db783a62f829f3445a05a293075d63da&amp;type=2#HurmeGeometricSans4-Bold SDF&apos;);" />
             </ui:VisualElement>
             <ui:VisualElement style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); flex-direction: row-reverse; padding-left: 10px; padding-right: 10px; padding-top: 10px; padding-bottom: 10px;">
-                <ui:Button display-tooltip-when-elided="true" name="next-btn" class="icon-button" style="background-image: url(&apos;project://database/Assets/Sprites/SimpleIcon/style02/shape032_style02_color08.png?fileID=2800000&amp;guid=acf7e2c15c43e5a46af99ea0a85e05ca&amp;type=3#shape032_style02_color08&apos;);" />
-                <ui:Button display-tooltip-when-elided="true" name="prev-btn" class="icon-button" style="background-image: url(&apos;project://database/Assets/Sprites/SimpleIcon/style02/shape031_style02_color08.png?fileID=2800000&amp;guid=e539007b48be2e84796fc9e4e720060d&amp;type=3#shape031_style02_color08&apos;);" />
+                <ui:Button display-tooltip-when-elided="true" name="next-btn" class="icon-button next-btn">
+                    <ui:VisualElement class="icon-btn-img" />
+                </ui:Button>
+                <ui:Button display-tooltip-when-elided="true" name="prev-btn" class="icon-button prev-btn">
+                    <ui:VisualElement class="icon-btn-img" style="flex-grow: 1; background-image: url(&apos;project://database/Assets/Sprites/Icons/angle-left.png?fileID=21300000&amp;guid=d992c92ff31b5314abfbd03947cc1085&amp;type=3#angle-left&apos;);" />
+                </ui:Button>
             </ui:VisualElement>
         </ui:VisualElement>
         <ui:VisualElement style="flex-grow: 1; background-color: rgba(0, 0, 0, 0);" />
-        <ui:VisualElement style="background-color: rgba(13, 13, 13, 0.75); padding-left: 0; padding-right: 0; padding-top: 0; padding-bottom: 0; margin-left: 10px; margin-right: 10px; margin-top: 10px; margin-bottom: 10px;">
-            <ui:VisualElement name="simulation-img" style="flex-grow: 1; background-color: rgba(5, 5, 5, 0.8); width: 512px; height: 512px;">
-                <ui:Label tabindex="-1" display-tooltip-when-elided="true" name="simframe-lbl" text="Frame: -" style="color: rgb(255, 255, 255); align-self: flex-end; font-size: 24px; margin-left: 20px; margin-right: 20px; margin-top: 20px; margin-bottom: 20px;" />
+        <ui:VisualElement class="panel-bg">
+            <ui:VisualElement name="simulation-img" style="flex-grow: 1; background-color: rgba(5, 5, 5, 0.8); width: 512px; height: 512px; border-top-left-radius: 8px; border-top-right-radius: 8px; border-bottom-right-radius: 0; border-bottom-left-radius: 0;">
+                <ui:Label tabindex="-1" display-tooltip-when-elided="true" name="simframe-lbl" text="Frame: -" style="color: rgb(255, 255, 255); align-self: flex-end; font-size: 24px; margin-left: 20px; margin-right: 20px; margin-top: 20px; margin-bottom: 20px; -unity-font-definition: url(&apos;project://database/Assets/Fonts/HurmeGeometricSans4-Bold%20SDF.asset?fileID=11400000&amp;guid=db783a62f829f3445a05a293075d63da&amp;type=2#HurmeGeometricSans4-Bold SDF&apos;);" />
             </ui:VisualElement>
             <ui:VisualElement style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); flex-direction: row; padding-left: 10px; padding-right: 10px; padding-top: 10px; padding-bottom: 10px;">
-                <ui:Button display-tooltip-when-elided="true" name="pause-btn" class="icon-button" style="background-image: url(&apos;project://database/Assets/Sprites/SimpleIcon/style02/shape002_style02_color05.png?fileID=2800000&amp;guid=d3e0a18d066f2db4e80a03ddcb63fd2a&amp;type=3#shape002_style02_color05&apos;);" />
-                <ui:Button display-tooltip-when-elided="true" name="play-btn" class="icon-button" style="background-image: url(&apos;project://database/Assets/Sprites/SimpleIcon/style02/shape001_style02_color04.png?fileID=2800000&amp;guid=1bc36d8cf90f7284e9b9617936be0c13&amp;type=3#shape001_style02_color04&apos;);" />
-                <ui:Button display-tooltip-when-elided="true" name="reset-btn" class="icon-button" style="background-image: url(&apos;project://database/Assets/Sprites/SimpleIcon/style02/shape069_style02_color11.png?fileID=2800000&amp;guid=141593dfcd953234ba0187070ab297ff&amp;type=3#shape069_style02_color11&apos;);" />
+                <ui:Button display-tooltip-when-elided="true" name="pause-btn" class="icon-button">
+                    <ui:VisualElement class="icon-btn-img" style="flex-grow: 1; background-image: url(&apos;project://database/Assets/Sprites/Icons/pause.png?fileID=21300000&amp;guid=ced8002f4a60a2444993598702bd4769&amp;type=3#pause&apos;);" />
+                </ui:Button>
+                <ui:Button display-tooltip-when-elided="true" name="play-btn" class="icon-button">
+                    <ui:VisualElement class="icon-btn-img" style="flex-grow: 1; background-image: url(&apos;project://database/Assets/Sprites/Icons/play.png?fileID=21300000&amp;guid=e449e7d25829e574cb2188869bfc4fc5&amp;type=3#play&apos;);" />
+                </ui:Button>
+                <ui:Button display-tooltip-when-elided="true" name="reset-btn" class="icon-button refresh-btn">
+                    <ui:VisualElement class="icon-btn-img" style="flex-grow: 1; background-image: url(&apos;project://database/Assets/Sprites/Icons/refresh.png?fileID=21300000&amp;guid=fc2c9720f6ec3334988578e3f3e9eb97&amp;type=3#refresh&apos;);" />
+                </ui:Button>
                 <ui:VisualElement style="flex-grow: 1; background-color: rgba(0, 0, 0, 0);" />
-                <ui:Button display-tooltip-when-elided="true" name="screenshot-btn" class="transparent-button" style="background-image: url(&apos;project://database/Assets/Textures/screenshot.png?fileID=2800000&amp;guid=da51375d52ec9b94e84f11d356f6590e&amp;type=3#screenshot&apos;); border-top-left-radius: 6px; border-bottom-left-radius: 6px; border-top-right-radius: 6px; border-bottom-right-radius: 6px;" />
+                <ui:Button display-tooltip-when-elided="true" name="screenshot-btn" class="transparent-button icon-button" style="border-top-left-radius: 6px; border-bottom-left-radius: 6px; border-top-right-radius: 6px; border-bottom-right-radius: 6px;">
+                    <ui:VisualElement class="icon-btn-img" style="flex-grow: 1; background-image: url(&apos;project://database/Assets/Sprites/Icons/mode-landscape.png?fileID=21300000&amp;guid=b994e12a303f6534894869df7feecf9e&amp;type=3#mode-landscape&apos;);" />
+                </ui:Button>
             </ui:VisualElement>
         </ui:VisualElement>
     </ui:VisualElement>

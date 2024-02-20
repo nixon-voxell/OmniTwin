@@ -17,6 +17,7 @@ namespace OmniTwin.UI
 
         private VisualElement m_Indicator;
         private Button m_DisasterBtn;
+        private VisualElement m_DisasterIcon;
         private DisasterData m_DisasterData;
         private Vector3 m_SphereScale;
 
@@ -35,6 +36,7 @@ namespace OmniTwin.UI
 
             this.m_Indicator = this.m_Root.Q<VisualElement>("indicator");
             this.m_DisasterBtn = this.m_Root.Q<Button>("disaster-btn");
+            this.m_DisasterIcon = this.m_Root.Q<VisualElement>("disaster-icon");
 
             this.m_DisasterBtn.clicked += () =>
             {
@@ -58,7 +60,7 @@ namespace OmniTwin.UI
 
         public void SetIcon(Texture2D icon)
         {
-            this.m_DisasterBtn.style.backgroundImage = icon;
+            this.m_DisasterIcon.style.backgroundImage = icon;
         }
 
         private void LateUpdate()

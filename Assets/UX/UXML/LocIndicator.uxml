@@ -2,8 +2,8 @@
     <Style src="project://database/Assets/UX/USS/Icon.uss?fileID=7433441132597879392&amp;guid=ce765ee15dba226469413d6b57c6c619&amp;type=3#Icon" />
     <ui:VisualElement name="indicator" picking-mode="Ignore" style="align-self: flex-start;">
         <ui:Button parse-escape-sequences="true" display-tooltip-when-elided="true" name="loc-btn" class="loc-btn">
-            <ui:VisualElement style="background-image: url(&apos;project://database/Assets/Sprites/SimpleIcon/style01/shape099_style01_color08.png?fileID=2800000&amp;guid=1532ebe1028d83748967971ae66414f9&amp;type=3#shape099_style01_color08&apos;); -unity-background-scale-mode: scale-to-fit; width: 24px; height: 24px; align-self: center; -unity-background-image-tint-color: rgb(153, 255, 247);" />
-            <ui:Label tabindex="-1" text="Label" parse-escape-sequences="true" display-tooltip-when-elided="true" name="loc-lbl" style="margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0;" />
+            <ui:VisualElement style="background-image: url(&apos;project://database/Assets/Sprites/Icons/marker.png?fileID=21300000&amp;guid=b5cf51f5357bd8844ae8fbf5a099fb1b&amp;type=3#marker&apos;); -unity-background-scale-mode: scale-to-fit; width: 24px; height: 24px; align-self: center; -unity-background-image-tint-color: rgb(153, 255, 247);" />
+            <ui:Label tabindex="-1" text="Label" parse-escape-sequences="true" display-tooltip-when-elided="true" name="loc-lbl" style="margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 8px; color: rgb(0, 0, 0); -unity-font-style: normal; -unity-font-definition: url(&apos;project://database/Assets/Fonts/HurmeGeometricSans4-Bold%20SDF.asset?fileID=11400000&amp;guid=db783a62f829f3445a05a293075d63da&amp;type=2#HurmeGeometricSans4-Bold SDF&apos;); -unity-text-align: middle-center; align-self: center; justify-content: center; align-items: center; font-size: 18px;" />
         </ui:Button>
     </ui:VisualElement>
 </ui:UXML>

@@ -1,12 +1,18 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../UIElementsSchema/UIElements.xsd" editor-extension-mode="True">
     <Style src="project://database/Assets/UX/USS/MainUI.uss?fileID=7433441132597879392&amp;guid=dca7ae48f4fd5a847b597ebe109bb073&amp;type=3#MainUI" />
     <ui:VisualElement name="body" picking-mode="Ignore" style="flex-shrink: 0; flex-grow: 1; flex-direction: row; padding-left: 10px; padding-right: 10px; padding-top: 10px; padding-bottom: 10px;">
-        <ui:Button display-tooltip-when-elided="true" name="back-btn" class="click-cursor icon" style="height: 64px; width: 64px; background-color: rgba(0, 0, 0, 0); background-image: url(&apos;project://database/Assets/Sprites/SimpleIcon/style01/shape031_style01_color08.png?fileID=2800000&amp;guid=a75cc623fe06ad74aaf36cad5f9db531&amp;type=3#shape031_style01_color08&apos;); visibility: hidden;" />
+        <ui:Button display-tooltip-when-elided="true" name="back-btn" class="click-cursor icon" style="height: 64px; width: 64px; background-image: url(&apos;project://database/Assets/Sprites/Icons/leave.png?fileID=21300000&amp;guid=37d5e447affc6284aaaaaa13cd622033&amp;type=3#leave&apos;); visibility: hidden;" />
     </ui:VisualElement>
     <ui:VisualElement name="footer" style="flex-grow: 0; flex-direction: row; flex-shrink: 0; background-color: rgb(25, 25, 25); padding-bottom: 40px; padding-top: 20px; padding-left: 10px; padding-right: 10px;">
         <ui:VisualElement style="flex-grow: 1; background-color: rgba(0, 0, 0, 0);" />
-        <ui:Button display-tooltip-when-elided="true" name="loc-btn" class="click-cursor icon border-icon" style="background-image: url(&apos;project://database/Assets/Sprites/SimpleIcon/style01/shape099_style01_color08.png?fileID=21300000&amp;guid=1532ebe1028d83748967971ae66414f9&amp;type=3#shape099_style01_color08&apos;);" />
-        <ui:Button display-tooltip-when-elided="true" name="disaster-btn" class="click-cursor icon border-icon" style="background-image: url(&apos;project://database/Assets/Sprites/SimpleIcon/style01/shape047_style01_color08.png?fileID=21300000&amp;guid=280d57292a7e68a43a8cd83c148be9b7&amp;type=3#shape047_style01_color08&apos;);" />
-        <ui:Button display-tooltip-when-elided="true" name="floodviz-btn" class="click-cursor icon border-icon" style="background-image: url(&apos;project://database/Assets/Sprites/SimpleIcon/style01/shape019_style01_color08.png?fileID=21300000&amp;guid=c54c879d347119343ab38839632f0131&amp;type=3#shape019_style01_color08&apos;);" />
+        <ui:Button display-tooltip-when-elided="true" name="loc-btn" class="click-cursor icon border-icon">
+            <ui:VisualElement picking-mode="Ignore" class="icon-img" style="background-image: url(&apos;project://database/Assets/Sprites/Icons/raindrops.png?fileID=21300000&amp;guid=c425a50d29227fc46ae8f5c1333f364f&amp;type=3#raindrops&apos;);" />
+        </ui:Button>
+        <ui:Button display-tooltip-when-elided="true" name="disaster-btn" class="click-cursor icon border-icon">
+            <ui:VisualElement class="icon-img" style="background-image: url(&apos;project://database/Assets/Sprites/Icons/map-marker.png?fileID=21300000&amp;guid=ef30a7906b3dd534985262e01eac598a&amp;type=3#map-marker&apos;);" />
+        </ui:Button>
+        <ui:Button display-tooltip-when-elided="true" name="floodviz-btn" class="click-cursor icon border-icon">
+            <ui:VisualElement class="icon-img" style="background-image: url(&apos;project://database/Assets/Sprites/Icons/chart-histogram.png?fileID=21300000&amp;guid=5d3f59a95fb21214c9b04ab82fe9eddc&amp;type=3#chart-histogram&apos;);" />
+        </ui:Button>
     </ui:VisualElement>
 </ui:UXML>

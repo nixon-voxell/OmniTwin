@@ -100,30 +100,55 @@
     border-top-width: 0;
     border-bottom-width: 0;
     background-color: rgba(0, 0, 0, 0);
+    transition-duration: 0.15s;
+    transition-timing-function: ease-in-out-cubic;
 }
 
 .icon-button:hover {
     width: 64px;
     height: 64px;
-    -unity-background-image-tint-color: rgba(255, 255, 255, 0.6);
+    scale: 1.2 1.2;
 }
 
-.transparent-button {
-    width: 64px;
-    height: 64px;
-    border-left-width: 0;
-    border-right-width: 0;
-    border-top-width: 0;
-    border-bottom-width: 0;
-    background-color: rgb(255, 255, 255);
+.panel-bg {
+    background-color: rgba(255, 255, 255, 0.1);
+    padding-left: 0;
+    padding-right: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 10px;
 }
 
-.transparent-button:hover {
-    width: 64px;
-    height: 64px;
-    border-left-width: 0;
-    border-right-width: 0;
-    border-top-width: 0;
-    border-bottom-width: 0;
-    background-color: rgba(255, 255, 255, 0.6);
+.icon-btn-img {
+    flex-grow: 1;
+    background-image: url('project://database/Assets/Sprites/Icons/angle-right.png?fileID=21300000&guid=88f6e046a7b06544aa12004f780bbef6&type=3#angle-right');
+    -unity-background-scale-mode: scale-to-fit;
+}
+
+.refresh-btn {
+}
+
+.refresh-btn:hover {
+    rotate: 90deg;
+}
+
+.next-btn {
+}
+
+.next-btn:hover {
+    translate: 10px 0;
+}
+
+.prev-btn {
+}
+
+.prev-btn:hover {
+    translate: -10px 0;
 }
