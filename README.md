@@ -1,6 +1,15 @@
 # Omni Twin
 
+### Usage
+
+Omni Twin is a Unity project.
+
+1. Download [Unity](https://unity.com/download)
+2. Open the project in Unity.
+
 ## Flood Simulation
+
+The flood simulation demo is done using compute shaders, utilizing GPGPU for accelerated computing.
 
 ![flood-sim1](./Screenshots/flood-sim1.png)
 
@@ -11,6 +20,8 @@
 ![flood-sim4](./Screenshots/flood-sim4.png)
 
 ## Disaster
+
+The disaster page shows an overview of all incidents.
 
 ![disaster1](./Screenshots/disaster1.png)
 
@@ -23,6 +34,8 @@
 ![disaster5](./Screenshots/disaster5.png)
 
 ## Weather
+
+The weather page shows the current weather at each location.
 
 ![weather1](./Screenshots/weather1.png)
 
